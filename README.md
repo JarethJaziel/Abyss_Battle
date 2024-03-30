@@ -15,6 +15,6 @@ Este repositorio es para tener registro de las actividades necesarias para el de
 
 ---
 ## Documentación:
-### [Primera Entrega - Propuesta del proyecto]()
+### [Primera Entrega - Propuesta del proyecto](https://github.com/JarethJaziel/Prueba_Juego/tree/PD-1)
 
 
