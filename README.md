@@ -1,7 +1,6 @@
-![Logo Juego](C:\Users\j_pab\OneDrive\Documents\GitHub\Prueba_Juego\Assets\Logo_Prov.jpg)
+
+<img src="https://github.com/JarethJaziel/Prueba_Juego/blob/fa1009ab5b57ed586fedea19de6075d801526525/Assets/Logo_Prov.jpg" width="350" height="350" border="10"/>
 # NombreJuego
-
-
 
 Este repositorio es para tener registro de las actividades necesarias para el desarrollo de este proyecto para la materia de Programación Estructurada. Les compartimos la información relacionada:
 
