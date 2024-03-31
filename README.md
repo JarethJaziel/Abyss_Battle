@@ -14,7 +14,7 @@
 
 ### [Lista de cotejo](Assets\ListaDeCotejo.pdf)
 
-- [Enlace al archivo Word del proyecto!]()
+- [¡Enlace al archivo Word del proyecto!]()
 
 ## TEAM
 
