@@ -1,10 +1,9 @@
+> # FIRST DELIVERY
 
-<img src="https://github.com/JarethJaziel/Prueba_Juego/blob/fa1009ab5b57ed586fedea19de6075d801526525/Assets/Logo_Prov.jpg" width="350" height="350" border="10"/>
-# NombreJuego
+>![UADY logo](https://github.com/hjanssena/FIS-Proyecto/blob/JPabloMartinez/Assets/Logo_UADY.png?raw=true)
 
-Este repositorio es para tener registro de las actividades necesarias para el desarrollo de este proyecto para la materia de Programación Estructurada. Les compartimos la información relacionada:
-
-### "Facultad de Matemáticas"
+---
+### FMAT UADY
 #### Grupo D - EMILIO GABRIEL REJÓN HERRERA
 
 ## Miembros del equipo
@@ -13,8 +12,75 @@ Este repositorio es para tener registro de las actividades necesarias para el de
  - Moo Pan Jareth Jaziel
  - Martínez Martínez José Pablo
 
+### [Lista de cotejo]()
+
+## TEAM
+
+### SCRUM master
+ - 
+ 
+### Development team
+ - 
+
+## Nuestro Proyecto
+
+<img src="" width="500" height="500" border="50"/>
+
 ---
-## Documentación:
-### [Primera Entrega - Propuesta del proyecto]()
+## Resumenes
+
+### Antecedentes
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+### Descripción del software
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+### Usuarios Objetivo
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+### Innovación
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+
+
+### Más información acerca de:
+
+- [HERE!]()
+
+---
+## OBJETIVO GENERAL Y SECUNDARIOS DEL SOFTWARE
+
+- [HERE!]()
+
+## REQUERIMIENTOS
+- [HERE!]()
+
+## CASOS DE USO
+
+- [HERE!]()
+
+## DIAGRAMA DE CASOS DE USO - TIPOS DE USUARIOS
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+### Más información:
+- [HERE!]()
+
+## INTERFACES DE USUARIO
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+### Más información:
+- [HERE!]()
+
+---
+
+### PROCESO DE DESARROLLO
+
+- [Descripción del Proceso!]()
+- [Manejo del Proceso!]()
+
+
 
 
