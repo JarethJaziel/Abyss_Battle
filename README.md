@@ -14,6 +14,8 @@
 
 ### [Lista de cotejo](Assets\ListaDeCotejo.pdf)
 
+- [Enlace al archivo Word del proyecto!]()
+
 ## TEAM
 
 ### SCRUM master
