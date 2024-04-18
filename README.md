@@ -1,6 +1,6 @@
 
 <img src="https://github.com/JarethJaziel/Prueba_Juego/blob/fa1009ab5b57ed586fedea19de6075d801526525/Assets/Logo_Prov.jpg" width="350" height="350" border="10"/>
-# NombreJuego
+# Abyss battle
 
 Este repositorio es para tener registro de las actividades necesarias para el desarrollo de este proyecto para la materia de Programación Estructurada. Les compartimos la información relacionada:
 
@@ -10,8 +10,8 @@ Este repositorio es para tener registro de las actividades necesarias para el de
 ## Miembros del equipo
  - Alonzo Palacios Rodrigo
  - Cuevas García Braulio Samuel
- - Moo Pan Jareth Jaziel
  - Martínez Martínez José Pablo
+ - Moo Pan Jareth Jaziel
 
 ---
 ## Documentación:
