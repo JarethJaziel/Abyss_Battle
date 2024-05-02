@@ -20,6 +20,7 @@ En este repositorio se lleva un registro de las actividades necesarias para el d
 ## Documentación:
 ### [Primera Entrega - Propuesta del proyecto](https://github.com/JarethJaziel/Abyss_Battle/tree/PrimeraEntrega)
 ### [Segunda Entrega - Propuesta del proyecto](https://github.com/JarethJaziel/Abyss_Battle/tree/SegundaEntrega)
-### [Entrega Final - Propuesta del proyecto](https://github.com/JarethJaziel/Abyss_Battle/tree/TerceraEntrega)
+### [Entrega Final](https://github.com/JarethJaziel/Abyss_Battle/tree/TerceraEntrega)
+### [Proyecto Ejecutable (Código)](https://github.com/JarethJaziel/Abyss_Battle/tree/Code)
 
 
