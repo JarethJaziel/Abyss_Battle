@@ -117,27 +117,27 @@ void moveSoldier(player* jugador, int direccion, char tablero[FILAS][COLUMNAS], 
     int nuevaPosY = jugador->soldier[*c].posY;
 
     switch(direccion){
-        case 72: // Flecha arriba
+        case 72: case 119: case 87: // Flecha arriba, w y W
       
 			if(tablero[nuevaPosY-1][nuevaPosX] == ' '){
 				nuevaPosY--;
 			}   
             break;
-        case 80: // Flecha abajo
+        case 80: case 115: case 83: // Flecha abajo, s y S
 
 			if(tablero[nuevaPosY+1][nuevaPosX] == ' ' ){
 				nuevaPosY++;
 			}
             
             break;
-        case 75: // Flecha izquierda
+        case 75: case 97: case 65:  // Flecha izquierda, a y A
 
 			if(tablero[nuevaPosY][nuevaPosX-1] == ' '){
 				nuevaPosX--;
 			}
             
             break;
-        case 77: // Flecha derecha
+        case 77: case 100: case 68: // Flecha derecha, d y D
         
 			if(tablero[nuevaPosY][nuevaPosX+1]==' '){
 				nuevaPosX++;
