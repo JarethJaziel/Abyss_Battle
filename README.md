@@ -1,11 +1,15 @@
 
-<img src="https://github.com/JarethJaziel/Prueba_Juego/blob/fa1009ab5b57ed586fedea19de6075d801526525/Assets/Logo_Prov.jpg" width="350" height="350" border="10"/>
-# NombreJuego
+<img src="" width="350" height="350" border="10"/>
 
-Este repositorio es para tener registro de las actividades necesarias para el desarrollo de este proyecto para la materia de Programación Estructurada. Les compartimos la información relacionada:
+# ABYSS BATTLE
+
+En este repositorio se lleva un registro de las actividades necesarias para el desarrollo de este proyecto para la materia de Programación Estructurada. Les compartimos la información relacionada:
 
 ### "Facultad de Matemáticas"
 #### Grupo D - EMILIO GABRIEL REJÓN HERRERA
+
+## Mastro encargado
+ - Emilio Gabriel Rejón Herrera
 
 ## Miembros del equipo
  - Alonzo Palacios Rodrigo
@@ -15,6 +19,8 @@ Este repositorio es para tener registro de las actividades necesarias para el de
 
 ---
 ## Documentación:
-### [Primera Entrega - Propuesta del proyecto](https://github.com/JarethJaziel/Prueba_Juego/tree/PD-1)
+### [Primera Entrega - Propuesta del proyecto]()
+### [Segunda Entrega - Propuesta del proyecto]()
+### [Entrega Final - Propuesta del proyecto]()
 
 
