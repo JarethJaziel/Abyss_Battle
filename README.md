@@ -1,5 +1,5 @@
 
-<img src="" width="350" height="350" border="10"/>
+<img src="Assets/Logo_Prov.jpg" width="350" height="350" border="10"/>
 
 # ABYSS BATTLE
 
@@ -19,8 +19,8 @@ En este repositorio se lleva un registro de las actividades necesarias para el d
 
 ---
 ## Documentación:
-### [Primera Entrega - Propuesta del proyecto]()
-### [Segunda Entrega - Propuesta del proyecto]()
-### [Entrega Final - Propuesta del proyecto]()
+### [Primera Entrega - Propuesta del proyecto](https://github.com/JarethJaziel/Abyss_Battle/tree/PrimeraEntrega)
+### [Segunda Entrega - Propuesta del proyecto](https://github.com/JarethJaziel/Abyss_Battle/tree/SegundaEntrega)
+### [Entrega Final - Propuesta del proyecto](https://github.com/JarethJaziel/Abyss_Battle/tree/TerceraEntrega)
 
 
