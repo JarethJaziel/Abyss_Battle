@@ -1,5 +1,4 @@
-
-<img src="Assets/Logo_Prov.jpg" width="350" height="350" border="10"/>
+<img src="https://github.com/JarethJaziel/Abyss_Battle/blob/7f795f8070c1efeb75754a03370a40813657d57a/Assets/Logo_Prov.jpg" width="350" height="350" border="10"/>
 
 # ABYSS BATTLE
 
@@ -8,7 +7,7 @@ En este repositorio se lleva un registro de las actividades necesarias para el d
 ### "Facultad de Matemáticas"
 #### Grupo D - EMILIO GABRIEL REJÓN HERRERA
 
-## Mastro encargado
+## Maestro encargado
  - Emilio Gabriel Rejón Herrera
 
 ## Miembros del equipo
