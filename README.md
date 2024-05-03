@@ -12,7 +12,7 @@
  - Moo Pan Jareth Jaziel
  - Martínez Martínez José Pablo
 
-### [Lista de cotejo]()
+### [Lista de cotejo](https://github.com/JarethJaziel/Abyss_Battle/blob/f120a8c7f8cc85a481735f948796ab2cc9bfd5d0/Assets/Lista%20de%20Cotejo%20-%20Avances%20de%20proyecto%20-%20CForce.pdf)
 
 ## "Abyss Battle"
 
@@ -81,11 +81,11 @@ adapten y aprendan a utilizar el videojuego.
 “soundtrack” de uso libre.
 
 ## Diagrama de casos de uso - Tipos de usuario
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/blob/f120a8c7f8cc85a481735f948796ab2cc9bfd5d0/Artifacts/Use%20Case%20Diagram%20for%20Abyss%20Battle%20V2.1.png)
 
 
 ## Interfaces de Usuario
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/blob/f120a8c7f8cc85a481735f948796ab2cc9bfd5d0/Design/Interfaces%20%5BAbyss%20Battle%5D%20Segunda%20entrega.pdf)
 
 
 ### PROCESO DE DESARROLLO
