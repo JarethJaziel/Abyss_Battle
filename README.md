@@ -1,6 +1,6 @@
 > # PRIMERA ENTREGA
 
->![UADY logo](https://github.com/hjanssena/FIS-Proyecto/blob/JPabloMartinez/Assets/Logo_UADY.png?raw=true)
+>![UADY logo](https://github.com/JarethJaziel/Abyss_Battle/blob/9bacc1249e87e47c6df1093284fe8fbb80c0d5c6/Assets/logoUADY.jpg)
 
 ---
 ### FMAT UADY
@@ -65,11 +65,11 @@ detecten el contacto entre los proyectiles con objetos de forma precisa.
 “soundtrack”
 
 ## Diagrama de casos de uso - Tipos de usuario
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/blob/9bacc1249e87e47c6df1093284fe8fbb80c0d5c6/Artifacts/Use%20Case%20Diagram%20for%20Abyss%20Battle.png)
 
 
 ## Interfaces de Usuario
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/tree/9bacc1249e87e47c6df1093284fe8fbb80c0d5c6/Design)
 
 
 ### PROCESO DE DESARROLLO
