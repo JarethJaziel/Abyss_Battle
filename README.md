@@ -31,6 +31,22 @@
 
 Nuestros usuarios objetivos son aquellas personas familiarizadas con el uso de ordenadores de sobre mesa o portatiles, además al ser un videojuego con nula violencia realista, el rango de edad nuestros usuarios objetivos lo podemos ubicar entre los 8 - 40 años. Cómo usuarios secundarios serían todos aquellos que no cumplan con la descripción previamente mencionada, ya que al ser un juego de mesa digital, no deja de ser casual y por lo mismo se presta a ser jugado por personas de casi todas las edades.
 
+### Descripción del usuario principal
+- Descripción: El jugador es la persona que interactúa directamente con el software, 
+ya sea controlando el cañón y lanzando proyectiles durante las partidas o configurando 
+opciones dentro del juego.
+- Responsabilidades:
+1. Jugar partidas contra otro jugador.
+2. Configurar opciones del juego, como ajustes de audio.
+- Características:
+1. Tiene habilidades y conocimientos básicos para jugar videojuegos.
+2. Puede variar en experiencia desde principiantes hasta jugadores más
+experimentados.
+- Objetivos:
+1. Disfrutar de la experiencia de juego.
+2. Ganar partidas contra otros jugadores.
+3. Explorar y descubrir las diferentes mecánicas y estrategias del juego.
+
 ### Innovación
 1. Será elaborado en un lenguaje de programación de bajo nivel conocido como C.
 2. Se implementará una mecánica de lanzamiento de proyectiles para diferenciarlo de un juego de batalla naval convencional.
@@ -47,29 +63,29 @@ Nuestros usuarios objetivos son aquellas personas familiarizadas con el uso de o
 ## Objetivo general y objetivos secundarios
 
 ### Objetivo general
-El sistema simula un combate en 2D, implementando como elemento principal la mecánica
-de lanzamiento y precisión con un cañón.
+Desarrollar un videojuego que simule un combate estratégico por turnos entre dos jugadores, en 
+formato 2D, implementando como elemento principal la mecánica de lanzamiento y precisión 
+con un cañón.
 
 ### Objetivos específicos del sistema
-1. Optimizar el rendimiento del software para garantizar un rendimiento fluido en 
-computadoras y laptops que cuenten con sistema operativo windows.
-2. Permitir la modificación del volumen de audio y música del sistema, subirlo, bajarlo 
-o directamente desactivarlo.
-3. El software deberá contar con un diseño de interfaces intuitivo que permita que los 
-usuarios se adapten y aprendan a utilizar el juego. 
-4. Desarrollar una mecánica que permita calcular y mostrar en pantalla la trayectoria 
-de una bala de cañón basándose en la potencia y dirección con la que es lanzada.
-5. Crear un sistema de detección de colisiones preciso: Implementar algoritmos que 
-detecten el contacto entre los proyectiles con objetos de forma precisa.
-6. En el sistema se deberá incorporar gráficos, animaciones, efectos de sonido y un 
-“soundtrack”
+1. Desarrollar una mecánica que permita calcular la trayectoria de un proyectil con cierta 
+potencia, siendo este a su vez direccionado.
+2. Optimizar el software para garantizar un rendimiento fluido en computadoras de 
+escritorio y portátiles que cuenten con sistema operativo “Windows”.
+3. Implementar un sistema de juego basado en turnos limitados por un tiempo, que permita 
+detectar el cambio de turno entre usuarios.
+4. Utilizar un diseño de interfaces intuitivo para el sistema, que permita que los usuarios se 
+adapten y aprendan a utilizar el videojuego. 
+5. Crear un algoritmo de detección de colisiones contra objetos.
+6. Incorporar en el software gráficos en 2D, animaciones, efectos de sonido y un 
+“soundtrack” de uso libre.
 
 ## Diagrama de casos de uso - Tipos de usuario
-- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/blob/9bacc1249e87e47c6df1093284fe8fbb80c0d5c6/Artifacts/Use%20Case%20Diagram%20for%20Abyss%20Battle.png)
+- [HERE!]()
 
 
 ## Interfaces de Usuario
-- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/tree/9bacc1249e87e47c6df1093284fe8fbb80c0d5c6/Design)
+- [HERE!]()
 
 
 ### PROCESO DE DESARROLLO
