@@ -196,7 +196,7 @@ void moveAim (int direccion, player* jugador, char tablero[FILAS][COLUMNAS], int
 	
 	if(p != 0){
 		
-		if(jugador->canon.posX < COLUMNAS/2){ //verifica quÈ jugador es
+		if(jugador->canon.posX < COLUMNAS/2){ //verifica qu√© jugador es
 			if(tablero[jugador->aim[p].posY][jugador->aim[p].posX + 1 ] == ' '){
 				jugador->aim[p].posY += direccion * -1;
 				tablero[jugador->aim[p].posY][jugador->aim[p].posX] = '$';
@@ -293,7 +293,7 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
 void updateTablero(player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS] ){
 	//reiniciar
 	inicializarTablero(tablero);
-	//setear el caÒÛn del jugador
+	//setear el ca√±√≥n del jugador
 	if(jugador->canon.posX < COLUMNAS/2){
 		for(i = jugador->canon.posX-2; i < jugador->canon.posX; i++){
     		tablero[jugador->canon.posY][i] = '=';
@@ -324,7 +324,7 @@ int main() {
     char tablero[FILAS][COLUMNAS];
     char keyMain; int moment=1, c1=0,c2=0;
     player jugador[2];
-    //Establece quÈ jugador comienza:
+    //Establece qu√© jugador comienza:
     jugador[0].turno=1;
     jugador[1].turno=0;
     	
@@ -367,7 +367,7 @@ int main() {
 					printf("\n%d \n",c2);
 				}
     			
-    			// if todos los de uno est·n inactivos: moment++
+    			// if todos los de uno est√°n inactivos: moment++
     			
     			
     			
@@ -378,6 +378,6 @@ int main() {
     	
 
         Sleep(10);
-    } while (keyMain != 27); // '27' es el cÛdigo ASCII para la tecla 'Escape'
+    } while (keyMain != 27); // '27' es el c√≥digo ASCII para la tecla 'Escape'
     return 0;
 }
