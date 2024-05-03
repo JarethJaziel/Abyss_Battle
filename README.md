@@ -12,19 +12,9 @@
  - Moo Pan Jareth Jaziel
  - Martínez Martínez José Pablo
 
-### [Lista de cotejo](Assets\ListaDeCotejo.pdf)
+### [Lista de cotejo]()
 
-- [¡Enlace al archivo Word del proyecto!]()
-
-## TEAM
-
-### SCRUM master
- - 
- 
-### Development team
- - 
-
-## Nuestro Proyecto
+## "Abyss Battle"
 
 <img src="Assets\Logo_Prov.jpg" width="500" height="500" border="50"/>
 
@@ -32,17 +22,20 @@
 ## Resumenes
 
 ### Antecedentes
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+¿Qué pasa cuando un grupo de amigos esta aburrido? si no cuentan con conexión a internet o con un juego de mesa físico, entonces tienen un problema. Buscando solucionar lo planteado anteriormente, se penso en crear un videojuego que funcionará sin estar conectado a internet, que sea para dos jugadores, con la particuliaridad de que sea elaborado en el lenguaje C, el cuál no es orientado a objetos. 
 
 ### Descripción del software
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+"Abyss Battle" (su nombre abreviado) juego desarrollado en la consola del programa conocido como Dev C++ será para dos jugadores en formato local para ordenadores de sobre mesa o portátiles (laptops), es decir, no se requerirá de acceso a internet para poder utilizar el software. En este se librará una batalla por turnos entre los dos jugadores, con un estilo similar a los juegos de batallas navales, esta vez ambientado en la época medieva, con la diferencia de que cada jugador deberá calcular un lanzamiento de un proyectil para eliminar a una tropa enemiga. 
 
 ### Usuarios Objetivo
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Nuestros usuarios objetivos son aquellas personas familiarizadas con el uso de ordenadores de sobre mesa o portatiles, además al ser un videojuego con nula violencia realista, el rango de edad nuestros usuarios objetivos lo podemos ubicar entre los 8 - 40 años. Cómo usuarios secundarios serían todos aquellos que no cumplan con la descripción previamente mencionada, ya que al ser un juego de mesa digital, no deja de ser casual y por lo mismo se presta a ser jugado por personas de casi todas las edades.
 
 ### Innovación
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+1. Será elaborado en un lenguaje de programación de bajo nivel conocido como C.
+2. Se implementará una mecánica de lanzamiento de proyectiles para diferenciarlo de un juego de batalla naval convencional.
+3. Se implementará un mecánica de calculo de trayectoria para los proyectiles, así como una para calcular la potencia con la que el jugador en turno decida lanzarlo.
+4. Se podrá ejecutar en consola desde el programa conocido como dev C++.
 
 
 
@@ -53,30 +46,31 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ---
 ## Objetivo general y objetivos secundarios
 
-- [HERE!]()
+### Objetivo general
+El sistema simula un combate en 2D, implementando como elemento principal la mecánica
+de lanzamiento y precisión con un cañón.
 
-## Requerimientos
-- [HERE!]()
-
-## Casos de Uso
-
-- [HERE!]()
+### Objetivos específicos del sistema
+1. Optimizar el rendimiento del software para garantizar un rendimiento fluido en 
+computadoras y laptops que cuenten con sistema operativo windows.
+2. Permitir la modificación del volumen de audio y música del sistema, subirlo, bajarlo 
+o directamente desactivarlo.
+3. El software deberá contar con un diseño de interfaces intuitivo que permita que los 
+usuarios se adapten y aprendan a utilizar el juego. 
+4. Desarrollar una mecánica que permita calcular y mostrar en pantalla la trayectoria 
+de una bala de cañón basándose en la potencia y dirección con la que es lanzada.
+5. Crear un sistema de detección de colisiones preciso: Implementar algoritmos que 
+detecten el contacto entre los proyectiles con objetos de forma precisa.
+6. En el sistema se deberá incorporar gráficos, animaciones, efectos de sonido y un 
+“soundtrack”
 
 ## Diagrama de casos de uso - Tipos de usuario
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-### Más información:
 - [HERE!]()
 
+
 ## Interfaces de Usuario
+- [HERE!]()
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-### Más información:
-- [HERE!](Design)
-
----
 
 ### PROCESO DE DESARROLLO
 
