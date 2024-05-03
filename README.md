@@ -1,4 +1,4 @@
-> # PRIMERA ENTREGA
+> # SEGUNDA ENTREGA
 
 >![UADY logo](https://github.com/JarethJaziel/Abyss_Battle/blob/9bacc1249e87e47c6df1093284fe8fbb80c0d5c6/Assets/logoUADY.jpg)
 
