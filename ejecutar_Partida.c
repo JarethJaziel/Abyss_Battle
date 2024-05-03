@@ -7,7 +7,7 @@
 #define FILAS 20
 #define COLUMNAS 60
 #define MAX_SOLDIER 5
-#define MAX_AIM 8
+#define MAX_AIM 7
 
 
 typedef struct {
