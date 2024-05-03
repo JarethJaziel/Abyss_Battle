@@ -12,7 +12,7 @@
  - Moo Pan Jareth Jaziel
  - Martínez Martínez José Pablo
 
-### [Lista de cotejo]()
+### [Lista de cotejo](https://github.com/JarethJaziel/Abyss_Battle/blob/2dde59fbf05bee5752ac5cd0b94977d2579d6b57/Assets/Lista%20de%20Cotejo%20-%20Propuesta%20Proyecto%20-%20Equipo%20CForce.pdf)
 
 ## "Abyss Battle"
 
