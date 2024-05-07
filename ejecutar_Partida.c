@@ -7,8 +7,8 @@
 
 #define FILAS 21
 #define COLUMNAS 91
-#define MAX_SOLDIER 12
-#define MAX_PTR 30 // FILAS - 1
+#define MAX_SOLDIER 5
+#define MAX_PTR 27 // FILAS - 1
 #define MAX_AIM 19		
 #define POTENCIA_MAX 11 // (COLUMNAS-6)/8
 #define MAX_DAMAGE 4
@@ -309,16 +309,29 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	int posX, posY, direccion, cont;
 	char key;
 	
+	
 	if(jugador->canon.posX < COLUMNAS/2){
-		posX=COLUMNAS/2 + 2 + (potencia * 4);
+		posX=COLUMNAS/2 + 1 + (potencia * 4);
 		direccion = 1;		
 	} else {
 		posX=COLUMNAS/2 + 2 - (potencia * 4);
 		direccion = -1;	
 	}
+	if(posX<1){
+		posX=1;
+	} else if (posX>COLUMNAS-2){
+		posY = COLUMNAS-2;
+	}
 	
 	for(i = posX; i > (posX - MAX_DAMAGE); i--){
 		posY = f(i, (float) c/MAX_PTR, jugador->canon.posX);
+		if(posY<1){
+			posY=1;	
+			break;		
+		} else if (posY>FILAS-2){
+			posY = FILAS-1;
+			break;
+		}
 		for(j = 0; j<MAX_SOLDIER; j++){
 			if((posY == enemigo->soldier[j].posY || posY - 1 == enemigo->soldier[j].posY || posY + 1 == enemigo->soldier[j].posY) && i == enemigo->soldier[j].posX ){
 				enemigo->soldier[j].active = 0;
@@ -337,19 +350,28 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	
 	if(jugador->canon.posX < COLUMNAS/2){
 		do {
-		
-			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = '*';
+			posY = f(cont, (float) c/MAX_PTR, jugador->canon.posX);
+			if(posY<1){
+			//	posY=1;	
+				posX=cont;
+				break;		
+			} else if (posY>FILAS-2){
+			//	posY = FILAS-2;
+				posX=cont;
+				break;
+			}
+			tablero[posY][cont] = '*';
 			
 			imprimirTableroAux(tablero);
 			printf("\n\nPresiona enter para omitir.");
 		
-			Sleep(10);
+			Sleep((int)10*POTENCIA_MAX/potencia);
 			
-			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = ' ';
+			tablero[posY][cont] = ' ';
 			
 			cont += direccion;
 			
-			verifVacio(tablero, f(cont, (float) c/MAX_PTR, jugador->canon.posX), &cont, direccion, (float)c/MAX_PTR, jugador->canon.posX);
+			verifVacio(tablero, posY, &cont, direccion, (float)c/MAX_PTR, jugador->canon.posX);
 			if(kbhit()){
 				key = getch();
 				if (key==13){
@@ -360,19 +382,29 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	} else {
 		do {
 		
-			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = '*';
+			posY = f(cont, (float) c/MAX_PTR, jugador->canon.posX);
+			if(posY<1){
+			//	posY=1;	
+				posX=cont+MAX_DAMAGE;
+				break;		
+			} else if (posY>FILAS-2){
+			//	posY = FILAS-2;
+				posX=cont+MAX_DAMAGE;
+				break;
+			}
+			tablero[posY][cont] = '*';
 			
 			imprimirTableroAux(tablero);
 			printf("\n\nPresiona enter para omitir.");
 		
-			Sleep(10);
+			Sleep((int)10*POTENCIA_MAX/potencia);
 			
-			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = ' ';
+			tablero[posY][cont] = ' ';
 			
 			
 			
 			cont += direccion;
-			verifVacio(tablero, f(cont, (float) c/MAX_PTR, jugador->canon.posX), &cont, direccion, (float)c/MAX_PTR, jugador->canon.posX);
+			verifVacio(tablero, posY, &cont, direccion, (float)c/MAX_PTR, jugador->canon.posX);
 			if(kbhit()){
 				key = getch();
 				if (key==13){
@@ -384,7 +416,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	
 	for(i = posX - 1; i > (posX - MAX_DAMAGE + 1); i--){
 		posY = f(i, (float) c/MAX_PTR, jugador->canon.posX);
-		
+
 		if(tablero[posY][i]==' '){
 			tablero[posY][i] = 'O';
 		} else if (tablero[posY][i] == '#'){
@@ -394,10 +426,10 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	}
 	
 	imprimirTableroAux(tablero);
-	Sleep(200);
+	Sleep(500);
 	for(i = posX; i > (posX - MAX_DAMAGE); i--){
 		posY = f(i, (float) c/MAX_PTR, jugador->canon.posX);
-		
+
 		for(j=posY-1; j<posY+2; j++){
 			if(tablero[j][i]==' '){
 				tablero[j][i] = 'O';
@@ -439,7 +471,7 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
        		
 			case 80: case 115: case 83: // Flecha abajo, s y S
 
-				if(*c > (-1)*(FILAS/2-1) ){
+				if(*c > (-1)*(FILAS/2) ){
 					(*c)--;
 					moveAim(1, jugador, *c);
 				}
