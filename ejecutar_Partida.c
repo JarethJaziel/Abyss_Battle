@@ -465,13 +465,19 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
             	determinarPotencia(potencia, jugador, *c, key, tablero);
 
             	disparar(jugador, enemigo, *c, *potencia, tablero);
-            	
+            	/*
             	if(soldadosActivos(enemigo) == 0){
             		(*moment)++;
 				} else {
 					switchTurno(jugador, enemigo);
 				}
-
+				*/
+				if(jugador->canon.posX > COLUMNAS/2){
+					if(soldadosActivos(jugador) == 0 || soldadosActivos(enemigo) == 0){
+						(*moment)++;
+					}
+				}
+				switchTurno(jugador, enemigo);
             	*c = 0;
 
             	setAim(enemigo);
@@ -538,6 +544,38 @@ int soldadosActivos(player* jugador){
 	return cont;
 }
 
+
+void updateFinal(player* jugador, char tablero[FILAS][COLUMNAS] ){
+
+	//setear el cañón del jugador
+	if(jugador->canon.posX < COLUMNAS/2){
+		for(i = jugador->canon.posX-2; i < jugador->canon.posX; i++){
+    		tablero[jugador->canon.posY][i] = '=';
+		}
+	} else {
+		for(i = jugador->canon.posX+2; i > jugador->canon.posX; i--){
+    		tablero[jugador->canon.posY][i] = '=';
+
+		}
+	}
+
+	tablero[jugador->canon.posY][jugador->canon.posX] = '*';
+//	tablero[jugador->aim[MAX_PTR-1].posY][jugador->aim[MAX_PTR-1].posX] = '>';
+
+	//escribir a los soldados enemigos
+	
+	for(i=0;i<MAX_SOLDIER; i++){
+		if(jugador->soldier[i].active){
+			tablero[jugador->soldier[i].posY][jugador->soldier[i].posX] = '#';
+		} else {
+			tablero[jugador->soldier[i].posY][jugador->soldier[i].posX] = 'X';
+		}	
+	}
+	
+    
+}
+
+
 int main() {
     char tablero[FILAS][COLUMNAS];
     char keyMain; int moment=1, c1=0,c2=0, potencia;
@@ -597,10 +635,16 @@ int main() {
     		case 4:
     			
     			system("cls");
-    			imprimirTablero(tablero, jugador);
+    			inicializarTablero(tablero); updateFinal(&jugador[0], tablero); updateFinal(&jugador[1], tablero);
+    			imprimirTableroAux(tablero);
     			
     			printf("\n\n================================\n\n");
-    			printf("El jugador %d ha ganado.", jugador[0].turno? 1: 2);
+    			if(soldadosActivos(&jugador[0]) == soldadosActivos(&jugador[1])){
+    				printf("Ha sido un empate");
+				} else {
+					printf("El jugador %d ha ganado.", (soldadosActivos(&jugador[0]) > soldadosActivos(&jugador[1]))? 1: 2);
+				}
+    			
     			printf("\n\n================================\n\n");
     			
     			keyMain = 27;
