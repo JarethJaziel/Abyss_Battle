@@ -321,6 +321,7 @@ void verifVacio( char tablero[FILAS][COLUMNAS], int posY, int* posX, int direcci
 
 void disparar(player* jugador, player* enemigo, int c, int potencia, char tablero[FILAS][COLUMNAS]) {
 	int posX, posY, direccion, cont;
+	char key;
 	
 	if(jugador->canon.posX < COLUMNAS/2){
 		posX=COLUMNAS/2 + 2 + (potencia * 4);
@@ -354,16 +355,21 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = '*';
 			
 			imprimirTableroAux(tablero);
+			printf("\n\nPresiona enter para omitir.");
 		
 			Sleep(100);
 			
 			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = ' ';
 			
-			if(tablero[f(cont + direccion, (float) c/MAX_PTR, jugador->canon.posX)][cont + direccion] != ' '){
-				cont+=direccion;
-			}
-			
 			cont += direccion;
+			
+			verifVacio(tablero, f(cont, (float) c/MAX_PTR, jugador->canon.posX), &cont, direccion, (float)c/MAX_PTR, jugador->canon.posX);
+			if(kbhit()){
+				key = getch();
+				if (key==13){
+					break;
+				}
+			}
 		} while (cont < posX);
 	} else {
 		do {
@@ -371,6 +377,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = '*';
 			
 			imprimirTableroAux(tablero);
+			printf("\n\nPresiona enter para omitir.");
 		
 			Sleep(100);
 			
@@ -380,17 +387,35 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 			
 			cont += direccion;
 			verifVacio(tablero, f(cont, (float) c/MAX_PTR, jugador->canon.posX), &cont, direccion, (float)c/MAX_PTR, jugador->canon.posX);
-			
+			if(kbhit()){
+				key = getch();
+				if (key==13){
+					break;
+				}
+			}
 		} while (cont > posX && f(cont, (float) c/MAX_PTR, jugador->canon.posX) < FILAS-1 && f(cont, (float) c/MAX_PTR, jugador->canon.posX) > 0 && cont > 0 && cont < COLUMNAS-1);
 	}
 	
+	for(i = posX - 1; i > (posX - MAX_DAMAGE + 1); i--){
+		posY = f(i, (float) c/MAX_PTR, jugador->canon.posX);
+		
+		if(tablero[posY][i]==' '){
+			tablero[posY][i] = 'O';
+		} else if (tablero[posY][i] == '#'){
+			tablero[posY][i] = 'X';
+		}
+			
+	}
+	
+	imprimirTableroAux(tablero);
+	Sleep(200);
 	for(i = posX; i > (posX - MAX_DAMAGE); i--){
 		posY = f(i, (float) c/MAX_PTR, jugador->canon.posX);
 		
 		for(j=posY-1; j<posY+2; j++){
 			if(tablero[j][i]==' '){
 				tablero[j][i] = 'O';
-			} else if (tablero[j][i] = '#'){
+			} else if (tablero[j][i] == '#'){
 				tablero[j][i] = 'X';
 			}
 		}
