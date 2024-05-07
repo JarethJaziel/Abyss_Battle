@@ -5,12 +5,12 @@
 #include <conio.h>
 #include <math.h>
 
-#define FILAS 20
-#define COLUMNAS 60
-#define MAX_SOLDIER 5
-#define MAX_PTR 19
-#define MAX_AIM 8
-#define POTENCIA_MAX 7
+#define FILAS 30
+#define COLUMNAS 90
+#define MAX_SOLDIER 12
+#define MAX_PTR 29
+#define MAX_AIM 20
+#define POTENCIA_MAX 11
 #define MAX_DAMAGE 4
 
 
@@ -74,6 +74,7 @@ void imprimirTablero(char tablero[FILAS][COLUMNAS], player jugador[]) {
         for (j = 0; j < COLUMNAS; j++) {
             printf("%c", tablero[i][j]);
         }
+		
     }
 }
 
@@ -215,6 +216,9 @@ void moveSoldier(player* jugador, int direccion, char tablero[FILAS][COLUMNAS], 
 			} else if (tablero[jugador->soldier[*c].posY + 1][jugador->soldier[*c].posX] == ' '){
 				jugador->soldier[*c + 1].posX = jugador->soldier[*c].posX;
    				jugador->soldier[*c + 1].posY = jugador->soldier[*c].posY + 1;
+			} else {
+				jugador->soldier[*c + 1].posX = jugador->canon.posX;
+   				jugador->soldier[*c + 1].posY = jugador->canon.posY - 2;
 			}
         	
         	break;
@@ -246,7 +250,7 @@ void siHayPuesto(player* jugador, char tablero[FILAS][COLUMNAS], int c){
 
 void inputSet(player* jugador, char tablero[FILAS][COLUMNAS], char* key, int* c){
 	
-//	siHayPuesto(jugador, tablero, *c);
+	siHayPuesto(jugador, tablero, *c);
 	tablero[jugador->soldier[*c].posY][jugador->soldier[*c].posX] = '0';
 	
 	
@@ -357,7 +361,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 			imprimirTableroAux(tablero);
 			printf("\n\nPresiona enter para omitir.");
 		
-			Sleep(100);
+			Sleep(10);
 			
 			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = ' ';
 			
@@ -379,7 +383,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 			imprimirTableroAux(tablero);
 			printf("\n\nPresiona enter para omitir.");
 		
-			Sleep(100);
+			Sleep(10);
 			
 			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = ' ';
 			
@@ -461,17 +465,11 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
             break;
             
             case 13:
-            	*potencia = 4;
+            	*potencia = ceil((float) POTENCIA_MAX/2);
             	determinarPotencia(potencia, jugador, *c, key, tablero);
 
             	disparar(jugador, enemigo, *c, *potencia, tablero);
-            	/*
-            	if(soldadosActivos(enemigo) == 0){
-            		(*moment)++;
-				} else {
-					switchTurno(jugador, enemigo);
-				}
-				*/
+
 				if(jugador->canon.posX > COLUMNAS/2){
 					if(soldadosActivos(jugador) == 0 || soldadosActivos(enemigo) == 0){
 						(*moment)++;
