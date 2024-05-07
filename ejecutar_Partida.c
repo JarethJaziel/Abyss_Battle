@@ -81,37 +81,20 @@ void imprimirTablero(char tablero[FILAS][COLUMNAS], player jugador[]) {
 int f(int x, float m, int origen){
 	
 	float fx;
-	x-=origen; 
+	x-=origen;
 	
 	if(origen < COLUMNAS/2){
-		
-		if(m>0){
-			fx= ((FILAS/2-1) - (float) m*x);
-			return floor(fx);
-		} else if(m<0){
-			fx= ((FILAS/2-1) - (float) m*x);
-			return ceil(fx);
-		} else{
-			fx= (FILAS/2-1);
-			return floor(fx);
-		}
-		
+		fx= ((FILAS/2-1) - (float) m*x);
 	} else {
-		
-		if(m>0){
-			fx= ((FILAS/2-1) - (float) (-1)*m*x);
-			return floor(fx);
-		} else if(m<0){
-			fx= ((FILAS/2-1) + (float) m*x);
-			return ceil(fx);
-		} else{
-			fx= (FILAS/2-1);
-			return floor(fx);
-		}
-		
+		fx= ((FILAS/2-1) + (float) m*x);
 	}
 	
-	
+	if(m>=0){
+		return floor(fx);
+	} else {
+		return ceil(fx);
+	}
+
 }
 
 void switchTurno ( player* jugador1, player* jugador2){
@@ -584,8 +567,6 @@ int main() {
     	
     inicializarTablero(tablero);
     setCanon(jugador, tablero);
-//    setAim(&jugador[0]); setAim(&jugador[1]);
-//    setDamage(&jugador[0]); setDamage(&jugador[1]);
     setSoldier1(&jugador[0], tablero); setSoldier1(&jugador[1], tablero);
     
     do {
@@ -650,6 +631,7 @@ int main() {
     			
 		}	
     	
+    	// if keyMain = 27 => despliega el menu de pausa
 
         Sleep(10);
     } while (keyMain != 27); // '27' es el código ASCII para la tecla 'Escape'
