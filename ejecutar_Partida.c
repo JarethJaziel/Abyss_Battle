@@ -5,14 +5,13 @@
 #include <conio.h>
 #include <math.h>
 
-#define FILAS 30
-#define COLUMNAS 90
+#define FILAS 21
+#define COLUMNAS 91
 #define MAX_SOLDIER 12
-#define MAX_PTR 29 // FILAS - 1
-#define MAX_AIM 18		
+#define MAX_PTR 30 // FILAS - 1
+#define MAX_AIM 19		
 #define POTENCIA_MAX 11 // (COLUMNAS-6)/8
 #define MAX_DAMAGE 4
-
 
 typedef struct {
 	int posX;
@@ -24,7 +23,7 @@ typedef struct {
 	
 	int turno;
 	pos canon;
-	pos soldier[MAX_SOLDIER];
+	pos soldier [MAX_SOLDIER];
 	pos aim[MAX_PTR];
 	
 } player;
@@ -39,7 +38,7 @@ void inicializarTablero(char tablero[FILAS][COLUMNAS]) {
                 tablero[i][j] = '-';
             } else if (j == 0 || j == COLUMNAS - 1) {
                 tablero[i][j] = '|';
-            } else if (j == (COLUMNAS/2)-2 || j == (COLUMNAS/2)+1){
+            } else if (j == (COLUMNAS/2)-1 || j == (COLUMNAS/2)+1){
             	tablero[i][j] = '|';
 			}else {
                 tablero[i][j] = ' ';
@@ -108,7 +107,7 @@ void setCanon(player jugador[], char tablero[FILAS][COLUMNAS]){
 	
 	jugador[0].canon.posX = (COLUMNAS/4)-1;
     jugador[0].canon.posY = (FILAS/2)-1;
-    jugador[1].canon.posX = 3 * (COLUMNAS/4) - 1;
+    jugador[1].canon.posX = 3 * (COLUMNAS/4) +2 ;
     jugador[1].canon.posY = (FILAS/2)-1;
     tablero[jugador[0].canon.posY][jugador[0].canon.posX] = '*';
     tablero[jugador[1].canon.posY][jugador[1].canon.posX] = '*';
@@ -568,6 +567,8 @@ int main() {
     inicializarTablero(tablero);
     setCanon(jugador, tablero);
     setSoldier1(&jugador[0], tablero); setSoldier1(&jugador[1], tablero);
+    
+    //printf("Cuantos jugadores")
     
     do {
     	
