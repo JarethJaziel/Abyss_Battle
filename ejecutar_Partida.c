@@ -7,8 +7,11 @@
 
 #define FILAS 20
 #define COLUMNAS 60
-#define MAX_SOLDIER 6
-#define MAX_AIM 7
+#define MAX_SOLDIER 3
+#define MAX_PTR 19
+#define MAX_AIM 8
+#define POTENCIA_MAX 7
+#define MAX_DAMAGE 4
 
 
 typedef struct {
@@ -22,7 +25,7 @@ typedef struct {
 	int turno;
 	pos canon;
 	pos soldier[MAX_SOLDIER];
-	pos aim[MAX_AIM];
+	pos aim[MAX_PTR];
 	
 } player;
 
@@ -45,6 +48,20 @@ void inicializarTablero(char tablero[FILAS][COLUMNAS]) {
     }
 }
 
+void imprimirTableroAux(char tablero[FILAS][COLUMNAS]) {
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+    CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
+    GetConsoleScreenBufferInfo(hConsole, &csbiInfo);
+
+    for (i = 0; i < FILAS; i++) {
+        COORD pos = {0, i};
+        SetConsoleCursorPosition(hConsole, pos);
+        for (j = 0; j < COLUMNAS; j++) {
+            printf("%c", tablero[i][j]);
+        }
+    }
+}
+
 void imprimirTablero(char tablero[FILAS][COLUMNAS], player jugador[]) {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     CONSOLE_SCREEN_BUFFER_INFO csbiInfo;
@@ -60,21 +77,38 @@ void imprimirTablero(char tablero[FILAS][COLUMNAS], player jugador[]) {
     }
 }
 
-int f(int x, float m, int origen, int direccion){
+int f(int x, float m, int origen){
 	
 	float fx;
 	x-=origen; 
-	if(m>0){
-		fx= ((FILAS/2-1) + (float) m*x*direccion);
-		return floor(fx);
-	} else if(m<0){
-		fx= ((FILAS/2-1) + (float) (-1)*m*x*direccion);
-		return ceil(fx);
-	} else{
-		fx= (FILAS/2-1);
-		return floor(fx);
-	}
 	
+	if(origen < COLUMNAS/2){
+		
+		if(m>0){
+			fx= ((FILAS/2-1) - (float) m*x);
+			return floor(fx);
+		} else if(m<0){
+			fx= ((FILAS/2-1) - (float) m*x);
+			return ceil(fx);
+		} else{
+			fx= (FILAS/2-1);
+			return floor(fx);
+		}
+		
+	} else {
+		
+		if(m>0){
+			fx= ((FILAS/2-1) - (float) (-1)*m*x);
+			return floor(fx);
+		} else if(m<0){
+			fx= ((FILAS/2-1) + (float) m*x);
+			return ceil(fx);
+		} else{
+			fx= (FILAS/2-1);
+			return floor(fx);
+		}
+		
+	}
 	
 	
 }
@@ -106,7 +140,7 @@ void setAim(player* jugador){
 	
 	j=jugador->canon.posX;
 	
-	for(i=0;i<MAX_AIM;i++){
+	for(i=0;i<MAX_PTR;i++){
 
 		jugador->aim[i].posX=j;
 		jugador->aim[i].posY=(FILAS/2)-1;
@@ -123,12 +157,13 @@ void setAim(player* jugador){
 void setSoldier1(player* jugador, char tablero[FILAS][COLUMNAS]){
 	
 	for(i=0; i<MAX_SOLDIER; i++){
-		jugador->soldier[i].posX = jugador->canon.posX;
-   		jugador->soldier[i].posY = jugador->canon.posY - 2;
+	//	jugador->soldier[i].posX = jugador->canon.posX;
+   	//	jugador->soldier[i].posY = jugador->canon.posY - 2;
    		jugador->soldier[i].active = 1;
 	}
-    
-
+    	
+	jugador->soldier[0].posX = jugador->canon.posX;
+   	jugador->soldier[0].posY = jugador->canon.posY - 2;
     
 }
 
@@ -167,6 +202,21 @@ void moveSoldier(player* jugador, int direccion, char tablero[FILAS][COLUMNAS], 
         case 13: //Tecla enter
         
         	tablero[jugador->soldier[*c].posY][jugador->soldier[*c].posX] = '#';
+        	
+        	if (tablero[jugador->soldier[*c].posY][jugador->soldier[*c].posX + 1] == ' '){
+        		jugador->soldier[*c + 1].posX = jugador->soldier[*c].posX + 1;
+   				jugador->soldier[*c + 1].posY = jugador->soldier[*c].posY;
+			} else if (tablero[jugador->soldier[*c].posY][jugador->soldier[*c].posX - 1] == ' ') {
+				jugador->soldier[*c + 1].posX = jugador->soldier[*c].posX - 1;
+   				jugador->soldier[*c + 1].posY = jugador->soldier[*c].posY;
+			} else if (tablero[jugador->soldier[*c].posY - 1][jugador->soldier[*c].posX] == ' '){
+				jugador->soldier[*c + 1].posX = jugador->soldier[*c].posX;
+   				jugador->soldier[*c + 1].posY = jugador->soldier[*c].posY - 1;
+			} else if (tablero[jugador->soldier[*c].posY + 1][jugador->soldier[*c].posX] == ' '){
+				jugador->soldier[*c + 1].posX = jugador->soldier[*c].posX;
+   				jugador->soldier[*c + 1].posY = jugador->soldier[*c].posY + 1;
+			}
+        	
         	break;
         default:
             return; // No se reconoce la tecla, no hacer nada
@@ -196,13 +246,13 @@ void siHayPuesto(player* jugador, char tablero[FILAS][COLUMNAS], int c){
 
 void inputSet(player* jugador, char tablero[FILAS][COLUMNAS], char* key, int* c){
 	
-	siHayPuesto(jugador, tablero, *c);
+//	siHayPuesto(jugador, tablero, *c);
 	tablero[jugador->soldier[*c].posY][jugador->soldier[*c].posX] = '0';
 	
 	
 	if(kbhit()){
         *key = getch();
-        moveSoldier(jugador, *key, tablero, &(*c));
+        moveSoldier(jugador, *key, tablero, c);
         if(*key == 13){
         	(*c)++;
 		}
@@ -212,26 +262,143 @@ void inputSet(player* jugador, char tablero[FILAS][COLUMNAS], char* key, int* c)
     
 }
 
-void moveAim (int direccion, player* jugador, char tablero[FILAS][COLUMNAS], int c){
+void moveAim (int direccion, player* jugador, int c){
 	
-	for(i=0;i<MAX_AIM; i++){
-		
-		if(direccion == -1 && c<0){
-			jugador->aim[i].posY = f(jugador->aim[i].posX, (float)c/MAX_AIM, jugador->canon.posX, 1);
-		} else if (direccion == 1 && c > 0){
-			jugador->aim[i].posY = f(jugador->aim[i].posX, (float)c/MAX_AIM, jugador->canon.posX, -1);
-		} else {
-			jugador->aim[i].posY = f(jugador->aim[i].posX, (float)c/MAX_AIM, jugador->canon.posX, direccion);
-		}
-		
-		
+	for(i=0;i<MAX_PTR; i++){
+
+		jugador->aim[i].posY = f(jugador->aim[i].posX, (float)c/MAX_PTR, jugador->canon.posX);
 		
 	}
 	
 }
 
+void determinarPotencia(int* potencia, player* jugador, int c, char* key, char tablero[FILAS][COLUMNAS]){
+	*key=72;
+	system("cls");
+	do{
+		imprimirTableroAux(tablero);
 
-void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], char* key, int* c){
+		printf("\n\nSeleccione la potencia:\n\n\t");
+		if (*potencia == 1) {
+            printf("< %d > ", *potencia);
+        } else {
+            printf("%d... < %d > ", *potencia - 1, *potencia);
+        }
+        if(*potencia != POTENCIA_MAX){
+        	printf("...%d", *potencia + 1);
+		}
+		if(kbhit()){
+			*key = getch();
+			switch(*key){
+				case 75: case 97: case 65:  // Flecha izquierda, a y A
+
+					if (*potencia > 1){
+						(*potencia)--;
+					}
+		            
+		            break;
+		        case 77: case 100: case 68: // Flecha derecha, d y D
+		        
+					if (*potencia < POTENCIA_MAX){
+						(*potencia)++;
+					}
+		            
+		            break;
+			}
+		}
+	} while (*key != 13 && *key != 27);
+	system("cls");
+}
+//checar
+
+void disparar(player* jugador, player* enemigo, int c, int potencia, char tablero[FILAS][COLUMNAS]) {
+	int posX, posY, direccion, cont;
+	
+	if(jugador->canon.posX < COLUMNAS/2){
+		posX=COLUMNAS/2 + 2 + (potencia * 4);
+		direccion = 1;		
+	} else {
+		posX=COLUMNAS/2 + 2 - (potencia * 4);
+		direccion = -1;	
+	}
+	
+	for(i = posX; i > (posX - MAX_DAMAGE); i--){
+		posY = f(i, (float) c/MAX_PTR, jugador->canon.posX);
+		for(j = 0; j<MAX_SOLDIER; j++){
+			if((posY == enemigo->soldier[j].posY || posY - 1 == enemigo->soldier[j].posY || posY + 1 == enemigo->soldier[j].posY) && i == enemigo->soldier[j].posX ){
+				enemigo->soldier[j].active = 0;
+			}
+		}
+			
+	}
+	
+	// animaci�n de disparo;
+	
+	cont = jugador->canon.posX;
+	
+	for(i=0; i<MAX_AIM; i++){
+		tablero[jugador->aim[i].posY][jugador->aim[i].posX] = ' ';
+	}
+	
+	if(jugador->canon.posX < COLUMNAS/2){
+		do {
+		
+			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = '*';
+			
+			imprimirTableroAux(tablero);
+		
+			Sleep(100);
+			
+			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = ' ';
+			
+			if(tablero[f(cont + direccion, (float) c/MAX_PTR, jugador->canon.posX)][cont + direccion] != ' '){
+				cont+=direccion;
+			}
+			
+			cont += direccion;
+		} while (cont < posX);
+	} else {
+		do {
+		
+			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = '*';
+			
+			imprimirTableroAux(tablero);
+		
+			Sleep(100);
+			
+			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = ' ';
+			
+			if(tablero[f(cont + direccion, (float) c/MAX_PTR, jugador->canon.posX)][cont + direccion] != ' '){
+				cont+=direccion;
+			}
+			
+			cont += direccion;
+		} while (cont > posX && f(cont, (float) c/MAX_PTR, jugador->canon.posX) < FILAS-1 && f(cont, (float) c/MAX_PTR, jugador->canon.posX) > 0 && cont > 0 && cont < COLUMNAS-1);
+	}
+	
+	for(i = posX; i > (posX - MAX_DAMAGE); i--){
+		posY = f(i, (float) c/MAX_PTR, jugador->canon.posX);
+		
+		for(j=posY-1; j<posY+2; j++){
+			if(tablero[j][i]==' '){
+				tablero[j][i] = 'O';
+			} else if (tablero[j][i] = '#'){
+				tablero[j][i] = 'X';
+			}
+		}
+
+			
+	}
+	
+	imprimirTableroAux(tablero);
+	Sleep(2000);
+	
+}
+
+
+
+
+void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], char* key, int* c, int* potencia, int* moment){
 	
 	if(kbhit()){
 		
@@ -241,26 +408,37 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
 			
 			case 72: case 119: case 87: // Flecha arriba, w y W
 			
-				if(*c < MAX_AIM - 1){
+				if(*c < FILAS/2 - 2){
 					(*c)++;
-					moveAim(-1, jugador, tablero, *c);
+					moveAim(-1, jugador,*c);
 				}
 
 	        break;
        		
 			case 80: case 115: case 83: // Flecha abajo, s y S
 
-				if(*c > (-1)*MAX_AIM + 1 ){
+				if(*c > (-1)*(FILAS/2-1) ){
 					(*c)--;
-					moveAim(1, jugador, tablero, *c);
+					moveAim(1, jugador, *c);
 				}
             
             break;
             
             case 13:
-            	switchTurno(jugador, enemigo);
-            	setAim(jugador);
+            	*potencia = 4;
+            	determinarPotencia(potencia, jugador, *c, key, tablero);
+
+            	disparar(jugador, enemigo, *c, *potencia, tablero);
+            	
+            	if(soldadosActivos(enemigo) == 0){
+            		(*moment)++;
+				} else {
+					switchTurno(jugador, enemigo);
+				}
+
             	*c = 0;
+
+            	setAim(enemigo);
             break;
             
 			
@@ -269,6 +447,7 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
 	}
 	
 }
+
 
 void updateTablero(player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS] ){
 	//reiniciar
@@ -281,28 +460,51 @@ void updateTablero(player* jugador, player* enemigo, char tablero[FILAS][COLUMNA
 	} else {
 		for(i = jugador->canon.posX+2; i > jugador->canon.posX; i--){
     		tablero[jugador->canon.posY][i] = '=';
+
 		}
 	}
     //setear el aimer del jugador
 	for(i=0;i<MAX_AIM;i++){
-
-		tablero[jugador->aim[i].posY][jugador->aim[i].posX] = '$';
+		if(jugador->canon.posX<COLUMNAS/2){
+			tablero[jugador->aim[i].posY][jugador->aim[i].posX] = '>';
+		} else {
+			tablero[jugador->aim[i].posY][jugador->aim[i].posX] = '<';
+		}
+		
 
 	}
+	
+//	tablero[jugador->aim[MAX_PTR-1].posY][jugador->aim[MAX_PTR-1].posX] = '>';
+
 	//escribir a los soldados enemigos
 	
 	for(i=0;i<MAX_SOLDIER; i++){
 		if(enemigo->soldier[i].active){
 			tablero[enemigo->soldier[i].posY][enemigo->soldier[i].posX] = '#';
-		}		
+		} else {
+			tablero[enemigo->soldier[i].posY][enemigo->soldier[i].posX] = 'X';
+		}	
 	}
 	
     
 }
 
+int soldadosActivos(player* jugador){
+	int cont=0;
+	for(i=0;i<MAX_SOLDIER;i++){
+		
+		if(jugador->soldier[i].active){
+			cont++;
+		}
+		
+	}
+	
+	return cont;
+}
+
 int main() {
     char tablero[FILAS][COLUMNAS];
-    char keyMain; int moment=1, c1=0,c2=0;
+    char keyMain; int moment=1, c1=0,c2=0, potencia;
     player jugador[2];
     //Establece qué jugador comienza:
     jugador[0].turno=1;
@@ -310,7 +512,8 @@ int main() {
     	
     inicializarTablero(tablero);
     setCanon(jugador, tablero);
-    setAim(&jugador[0]); setAim(&jugador[1]);
+//    setAim(&jugador[0]); setAim(&jugador[1]);
+//    setDamage(&jugador[0]); setDamage(&jugador[1]);
     setSoldier1(&jugador[0], tablero); setSoldier1(&jugador[1], tablero);
     
     do {
@@ -325,6 +528,7 @@ int main() {
     				switchTurno(&jugador[0], &jugador[1]);
     				moment++;
     				c1=0;
+    				
 				}
     			break;
     		case 2:
@@ -333,25 +537,34 @@ int main() {
     				switchTurno(&jugador[0], &jugador[1]);
     				moment++;
     				system("cls");
+    				
+    				setAim(&jugador[0]); 
+					setAim(&jugador[1]);
 				}
     			break;
     		case 3:
     			
     			if(jugador[0].turno){
     				updateTablero(&jugador[0], &jugador[1], tablero);
-    				inputAim(&jugador[0], &jugador[1], tablero,&keyMain, &c2);
+    				inputAim(&jugador[0], &jugador[1], tablero,&keyMain, &c2, &potencia, &moment);
     				printf("\n%d \n",c2);
+
 				} else {
 					updateTablero(&jugador[1], &jugador[0], tablero);
-					inputAim(&jugador[1], &jugador[0], tablero, &keyMain, &c2);
+					inputAim(&jugador[1], &jugador[0], tablero, &keyMain, &c2, &potencia, &moment);
 					printf("\n%d \n",c2);
+
 				}
+				
+				break;
     			
-    			// if todos los de uno están inactivos: moment++
+    		case 4:
     			
+    			printf("\n\n================================\n\n");
+    			printf("El jugador %d ha ganado.", jugador[0].turno? 1: 2);
+    			printf("\n\n================================\n\n");
     			
-    			
-    			//keyMain = 27;
+    			keyMain = 27;
 				break;
     			
 		}	
