@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <windows.h>
 #include <conio.h>
+#include <math.h>
 
 #define FILAS 20
 #define COLUMNAS 60
@@ -57,6 +58,25 @@ void imprimirTablero(char tablero[FILAS][COLUMNAS], player jugador[]) {
             printf("%c", tablero[i][j]);
         }
     }
+}
+
+int f(int x, float m, int origen, int direccion){
+	
+	float fx;
+	x-=origen; 
+	if(m>0){
+		fx= ((FILAS/2-1) + (float) m*x*direccion);
+		return floor(fx);
+	} else if(m<0){
+		fx= ((FILAS/2-1) + (float) (-1)*m*x*direccion);
+		return ceil(fx);
+	} else{
+		fx= (FILAS/2-1);
+		return floor(fx);
+	}
+	
+	
+	
 }
 
 void switchTurno ( player* jugador1, player* jugador2){
@@ -192,35 +212,21 @@ void inputSet(player* jugador, char tablero[FILAS][COLUMNAS], char* key, int* c)
     
 }
 
-void moveAim (int direccion, player* jugador, char tablero[FILAS][COLUMNAS], int p, int* c){
+void moveAim (int direccion, player* jugador, char tablero[FILAS][COLUMNAS], int c){
 	
-	if(p != 0){
+	for(i=0;i<MAX_AIM; i++){
 		
-		if(jugador->canon.posX < COLUMNAS/2){ //verifica qué jugador es
-			if(tablero[jugador->aim[p].posY][jugador->aim[p].posX + 1 ] == ' '){
-				jugador->aim[p].posY += direccion * -1;
-				tablero[jugador->aim[p].posY][jugador->aim[p].posX] = '$';
-				if(p == MAX_AIM-1){
-					(*c) += direccion;
-				}				
-				moveAim(direccion, jugador, tablero, p-1, c);
-				
-			}
+		if(direccion == -1 && c<0){
+			jugador->aim[i].posY = f(jugador->aim[i].posX, (float)c/MAX_AIM, jugador->canon.posX, 1);
+		} else if (direccion == 1 && c > 0){
+			jugador->aim[i].posY = f(jugador->aim[i].posX, (float)c/MAX_AIM, jugador->canon.posX, -1);
 		} else {
-			if(tablero[jugador->aim[p].posY][jugador->aim[p].posX - 1 ] == ' '){
-				jugador->aim[p].posY += direccion * -1;
-				if(p == MAX_AIM-1){
-					(*c) += direccion;
-				}
-				tablero[jugador->aim[p].posY][jugador->aim[p].posX] = '$';
-				moveAim(direccion, jugador, tablero, p-1, c);
-			}
+			jugador->aim[i].posY = f(jugador->aim[i].posX, (float)c/MAX_AIM, jugador->canon.posX, direccion);
 		}
 		
 		
+		
 	}
-	
-	
 	
 }
 
@@ -236,57 +242,31 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
 			case 72: case 119: case 87: // Flecha arriba, w y W
 			
 				if(*c < MAX_AIM - 1){
-					moveAim(1, jugador, tablero, MAX_AIM-1, c);
+					(*c)++;
+					moveAim(-1, jugador, tablero, *c);
 				}
-				
-				
-				
-	            break;
+
+	        break;
        		
 			case 80: case 115: case 83: // Flecha abajo, s y S
 
 				if(*c > (-1)*MAX_AIM + 1 ){
-					moveAim(-1, jugador, tablero, MAX_AIM-1, c);
+					(*c)--;
+					moveAim(1, jugador, tablero, *c);
 				}
             
-            	break;
+            break;
             
             case 13:
             	switchTurno(jugador, enemigo);
             	setAim(jugador);
             	*c = 0;
-            	break;
+            break;
             
 			
 		}
 		
 	}
-
-/*
-	if(jugador[0].turno){
-		if(kbhit()){
-			*key = getch();
-			
-			switch(*key){
-				case 72: //Flecha arriba
-					
-					if(tablero[(FILAS/2)+1][(COLUMNAS/4)+2] != '$'){
-						moveAim(jugador[0], 1, tablero);
-					}
-					
-					break;
-				case 80: //Flecha abajo
-					
-					if(tablero[(FILAS/2)-3][(COLUMNAS/4)+2] != '$')
-					moveAim(jugador[0], -1, tablero)
-					break;
-			}
-		}
-	} else {
-		
-	}
-*/
-	
 	
 }
 
