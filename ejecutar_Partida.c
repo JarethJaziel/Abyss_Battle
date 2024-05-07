@@ -391,7 +391,9 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	}
 	
 	imprimirTableroAux(tablero);
-	Sleep(2000);
+	printf("\n");
+	system("pause");
+	system("cls");
 	
 }
 
@@ -547,18 +549,21 @@ int main() {
     			if(jugador[0].turno){
     				updateTablero(&jugador[0], &jugador[1], tablero);
     				inputAim(&jugador[0], &jugador[1], tablero,&keyMain, &c2, &potencia, &moment);
-    				printf("\n%d \n",c2);
+    				printf("\nObjetivos restantes: %d\n\n", soldadosActivos(&jugador[1]));
 
 				} else {
 					updateTablero(&jugador[1], &jugador[0], tablero);
 					inputAim(&jugador[1], &jugador[0], tablero, &keyMain, &c2, &potencia, &moment);
-					printf("\n%d \n",c2);
+					printf("\nObjetivos restantes: %d\n\n", soldadosActivos(&jugador[0]));
 
 				}
 				
 				break;
     			
     		case 4:
+    			
+    			system("cls");
+    			imprimirTablero(tablero, jugador);
     			
     			printf("\n\n================================\n\n");
     			printf("El jugador %d ha ganado.", jugador[0].turno? 1: 2);
