@@ -7,7 +7,7 @@
 
 #define FILAS 20
 #define COLUMNAS 60
-#define MAX_SOLDIER 3
+#define MAX_SOLDIER 5
 #define MAX_PTR 19
 #define MAX_AIM 8
 #define POTENCIA_MAX 7
@@ -309,7 +309,15 @@ void determinarPotencia(int* potencia, player* jugador, int c, char* key, char t
 	} while (*key != 13 && *key != 27);
 	system("cls");
 }
-//checar
+
+void verifVacio( char tablero[FILAS][COLUMNAS], int posY, int* posX, int direccion, float m, int origen){
+	
+	if(tablero[posY][*posX] != ' '){
+		*posX += direccion;
+		verifVacio(tablero, f(*posX, m, origen), posX, direccion, m, origen);
+	}
+	
+}
 
 void disparar(player* jugador, player* enemigo, int c, int potencia, char tablero[FILAS][COLUMNAS]) {
 	int posX, posY, direccion, cont;
@@ -368,11 +376,11 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 			
 			tablero[f(cont, (float) c/MAX_PTR, jugador->canon.posX)][cont] = ' ';
 			
-			if(tablero[f(cont + direccion, (float) c/MAX_PTR, jugador->canon.posX)][cont + direccion] != ' '){
-				cont+=direccion;
-			}
+			
 			
 			cont += direccion;
+			verifVacio(tablero, f(cont, (float) c/MAX_PTR, jugador->canon.posX), &cont, direccion, (float)c/MAX_PTR, jugador->canon.posX);
+			
 		} while (cont > posX && f(cont, (float) c/MAX_PTR, jugador->canon.posX) < FILAS-1 && f(cont, (float) c/MAX_PTR, jugador->canon.posX) > 0 && cont > 0 && cont < COLUMNAS-1);
 	}
 	
@@ -396,6 +404,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	system("cls");
 	
 }
+
 
 
 
