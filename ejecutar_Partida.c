@@ -8,9 +8,9 @@
 #define FILAS 30
 #define COLUMNAS 90
 #define MAX_SOLDIER 12
-#define MAX_PTR 29
-#define MAX_AIM 20
-#define POTENCIA_MAX 11
+#define MAX_PTR 29 // FILAS - 1
+#define MAX_AIM 18		
+#define POTENCIA_MAX 11 // (COLUMNAS-6)/8
 #define MAX_DAMAGE 4
 
 
