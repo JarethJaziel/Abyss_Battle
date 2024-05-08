@@ -14,6 +14,7 @@
 #define POTENCIA_MAX 11 // (COLUMNAS-6)/8
 #define MAX_DAMAGE 4
 
+#define OPCIONES 3
 typedef struct {
 	int posX;
 	int posY;
@@ -31,6 +32,21 @@ typedef struct {
 } player;
 
 int i,j;
+
+void gotoxy(int x, int y) {
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+void imprimirMenu(int opcionSeleccionada) {
+    system("cls");
+    printf("			ABYSS´S BATTLE:\n\n");
+    printf("		      %s Iniciar juego\n", opcionSeleccionada == 0 ? ">  " : " ");
+    printf("			 %s Creditos\n", opcionSeleccionada == 1 ? ">  " : " ");
+    printf("		    %s Salir del programa\n", opcionSeleccionada == 2 ? ">  " :  " ");
+}
 
 void inicializarTablero(char tablero[FILAS][COLUMNAS]) {
 
@@ -690,7 +706,7 @@ void mostrarFeedback(player* jugador1, player* jugador2){
 
 
 
-int main() {
+int iniciarjuego() {
 	setlocale(LC_ALL,"");
 	
     char tablero[FILAS][COLUMNAS];
@@ -794,3 +810,47 @@ int main() {
     
     return 0;
 }
+
+int main() {
+	setlocale(LC_ALL, "");
+    int opcionSeleccionada = 0;
+    char tecla;
+
+    do {
+        imprimirMenu(opcionSeleccionada);
+
+        tecla = getch();
+
+        switch (tecla) {
+            case 72: case 119: case 87: // Flecha arriba, w y W
+                opcionSeleccionada = (opcionSeleccionada - 1 + OPCIONES) % OPCIONES;
+                break;
+            case 80: case 115: case 83: // Flecha abajo, s y S
+                opcionSeleccionada = (opcionSeleccionada + 1) % OPCIONES;
+                break;
+            case 13: //Tecla enter
+                switch (opcionSeleccionada) {
+                    case 0:
+                        printf("\nIniciando juego...\n");
+                        // Aquí puedes agregar la lógica para iniciar el juego
+                        iniciarjuego();
+                        break;
+                    case 1:
+                        printf("\nMostrando creditos...\n");                       
+   						system("cls");
+                        // Aquí puedes agregar la lógica para mostrar los créditos
+                        printf("\t---ABBYS´S BATTLE--- \n\t       \tCFORCE \n \tAlonzo Palacios Rodrigo Alonzo \n \tCuevas Garcia Braulio Samuel \n \tMartincez Martincez pablo \n \tMoo Pan Jareth Jaziel\n");
+                        getch();
+						break;
+                    case 2:
+                        printf("\nSaliendo del programa...\n");
+                        exit(0);
+						break;
+                }
+                break;
+        }
+    } while (1);
+
+    return 0;
+}
+
