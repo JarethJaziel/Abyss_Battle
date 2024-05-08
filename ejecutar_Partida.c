@@ -826,7 +826,7 @@ int main() {
 						break;
                     case 2:
                         printf("\nSaliendo del programa...\n"); //saliendo
-                        exit(0);
+                        return 0;
 						break;
                 }
                 break;
