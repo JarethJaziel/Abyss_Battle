@@ -14,6 +14,7 @@
 #define POTENCIA_MAX 11 // (COLUMNAS-6)/8
 #define MAX_DAMAGE 4
 
+#define OPCIONES 3
 typedef struct {
 	int posX;
 	int posY;
@@ -31,6 +32,21 @@ typedef struct {
 } player;
 
 int i,j;
+
+void gotoxy(int x, int y) {
+    COORD coord;
+    coord.X = x;
+    coord.Y = y;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
+void imprimirMenu(int opcionSeleccionada) {
+    system("cls");
+    printf("			ABYSS´S BATTLE:\n\n");
+    printf("		      %s Iniciar juego\n", opcionSeleccionada == 0 ? ">  " : " ");
+    printf("			 %s Creditos\n", opcionSeleccionada == 1 ? ">  " : " ");
+    printf("		    %s Salir del programa\n", opcionSeleccionada == 2 ? ">  " :  " ");
+}
 
 void inicializarTablero(char tablero[FILAS][COLUMNAS]) {
 
@@ -340,7 +356,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 
 	}
 	
-	// animación de disparo;
+	// animaciï¿½n de disparo;
 	
 	cont = jugador->canon.posX;
 	
@@ -443,7 +459,9 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 		imprimirTableroAux(tablero);
 		printf("\n\n=============================================\n");
 		printf("                   PAUSA\n\n");
-		printf("%s\n%s\n%s", reanudar, reiniciar, salir);
+		printf("           %sReanudar partida\n",opc==1?"> " : " ");
+		printf("           %sReiniciar partida\n",opc==2?"> " : " ");
+		printf("           %sRegresar al Menú\n",opc==3?"> " : " ");
 		if(kbhit()){
 			opcion = getch();
 			switch(opcion){
@@ -468,13 +486,11 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 	            	
 	            	switch(opc){
 						case 1:
-						//	strcpy(reanudar, "> Reanudar partida");
 							
 							*keyMain = 1; // Solo le cambio que no sea el escape en ASCII
 							system("cls");
 							break;
 						case 2:
-						//	strcpy(reiniciar, "> Reiniciar partida");
 							*keyMain = 1;
 							*moment = 1;
 							*c1=0;
@@ -492,27 +508,11 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 							
 							break;
 						case 3:
-						//	strcpy(salir, "> Salir del juego");
 						// HACER NADA
 							break;
 					}
 	            	
             	break;
-			}
-			strcpy(reanudar, "Reanudar partida");
-			strcpy(reiniciar, "Reiniciar partida");
-			strcpy(salir, "Salir del juego");
-
-			switch(opc){
-				case 1:
-					strcpy(reanudar, "> Reanudar partida");
-					break;
-				case 2:
-					strcpy(reiniciar, "> Reiniciar partida");
-					break;
-				case 3:
-					strcpy(salir, "> Salir del juego");
-					break;
 			}
 		}
 	} while (opcion!=13);
@@ -560,7 +560,7 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
 					setAim(enemigo);
 					if(soldadosActivos(enemigo) == 0){
 						fflush(stdout);
-						printf("\n\n¡Has eliminado a todos!     \n");
+						printf("\n\nï¿½Has eliminado a todos!     \n");
 					}
 					if(jugador->canon.posX > COLUMNAS/2 && (soldadosActivos(jugador) == 0 || soldadosActivos(enemigo) == 0)){
 						(*moment)++;
@@ -569,7 +569,7 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
 				} else {
 					
 					setAim(jugador);
-					printf("\n\n¡Le has dado a un objetivo!\n¡Vuelves a tirar!\n");
+					printf("\n\nï¿½Le has dado a un objetivo!\nï¿½Vuelves a tirar!\n");
 					
 				}
 				jugador->disparos ++;
@@ -676,21 +676,21 @@ void updateFinal(player* jugador, char tablero[FILAS][COLUMNAS] ){
 void mostrarFeedback(player* jugador1, player* jugador2){
 	
 	printf("\n\n=============================================\n");
-	printf("          ESTADÍSTICAS JUGADOR 1\n\n");
-	printf("El jugador 1 realizó %d disparos\n", jugador1->disparos);
-	printf("El jugador 1 eliminó a %d soldados enemigos\n", (MAX_SOLDIER - soldadosActivos(jugador2)));
-	printf("El jugador 1 se quedó con %d soldados\n\n", soldadosActivos(jugador1));
+	printf("          ESTADï¿½STICAS JUGADOR 1\n\n");
+	printf("El jugador 1 realizï¿½ %d disparos\n", jugador1->disparos);
+	printf("El jugador 1 eliminï¿½ a %d soldados enemigos\n", (MAX_SOLDIER - soldadosActivos(jugador2)));
+	printf("El jugador 1 se quedï¿½ con %d soldados\n\n", soldadosActivos(jugador1));
 	printf("=============================================\n");
-	printf("          ESTADÍSTICAS JUGADOR 2\n\n");
-	printf("El jugador 2 realizó %d disparos\n", jugador2->disparos);
-	printf("El jugador 2 eliminó a %d soldados enemigos\n", (MAX_SOLDIER - soldadosActivos(jugador1)));
-	printf("El jugador 2 se quedó con %d soldados\n\n", soldadosActivos(jugador2));
+	printf("          ESTADï¿½STICAS JUGADOR 2\n\n");
+	printf("El jugador 2 realizï¿½ %d disparos\n", jugador2->disparos);
+	printf("El jugador 2 eliminï¿½ a %d soldados enemigos\n", (MAX_SOLDIER - soldadosActivos(jugador1)));
+	printf("El jugador 2 se quedï¿½ con %d soldados\n\n", soldadosActivos(jugador2));
 	
 }
 
 
 
-int main() {
+int iniciarjuego() {
 	setlocale(LC_ALL,"");
 	
     char tablero[FILAS][COLUMNAS];
@@ -714,7 +714,7 @@ int main() {
     			//if turno jugador 1
     			printf("\nJugador 1, coloca a tus soldados\n\n");
     			printf("\tMueve el cursor con las flechas o con WASD\n");
-    			printf("\tPara seleccionar la posición, presiona enter\n");
+    			printf("\tPara seleccionar la posiciï¿½n, presiona enter\n");
     			inputSet(&jugador[0], tablero, &keyMain, &c1);
     			//if c1 = 4 cambiar turnos y aumentar momento
     			if (c1==MAX_SOLDIER){
@@ -727,7 +727,7 @@ int main() {
     		case 2:
     			printf("\nJugador 2, coloca a tus soldados\n\n");
     			printf("\tMueve el cursor con las flechas o con WASD\n");
-    			printf("\tPara seleccionar la posición, presiona enter\n");
+    			printf("\tPara seleccionar la posiciï¿½n, presiona enter\n");
     			inputSet(&jugador[1], tablero, &keyMain, &c1);
     			if (c1==MAX_SOLDIER){
     				switchTurno(&jugador[0], &jugador[1]);
@@ -794,3 +794,45 @@ int main() {
     
     return 0;
 }
+
+int main() {
+	setlocale(LC_ALL, "");
+    int opcionSeleccionada = 0;
+    char tecla;
+
+    do {
+        imprimirMenu(opcionSeleccionada);
+
+        tecla = getch();
+
+        switch (tecla) {
+            case 72: case 119: case 87: // Flecha arriba, w y W
+                opcionSeleccionada = (opcionSeleccionada - 1 + OPCIONES) % OPCIONES;
+                break;
+            case 80: case 115: case 83: // Flecha abajo, s y S
+                opcionSeleccionada = (opcionSeleccionada + 1) % OPCIONES;
+                break;
+            case 13: //Tecla enter
+                switch (opcionSeleccionada) {
+                    case 0:
+                        printf("\nIniciando juego...\n");//jugar
+                        iniciarjuego();
+                        break;
+                    case 1:
+                        printf("\nMostrando creditos...\n");     //mostrar creditos                  
+   						system("cls");
+                        printf("\t---ABBYSï¿½S BATTLE--- \n\t       \t Equipo C-FORCE \n \tAlonzo Palacios Rodrigo Alonzo \n \tCuevas Garcia Braulio Samuel \n \tMartincez Martincez pablo \n \tMoo Pan Jareth Jaziel\n");
+                        getch();
+						break;
+                    case 2:
+                        printf("\nSaliendo del programa...\n"); //saliendo
+                        exit(0);
+						break;
+                }
+                break;
+        }
+    } while (1);
+
+    return 0;
+}
+
