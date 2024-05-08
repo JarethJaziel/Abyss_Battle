@@ -464,7 +464,7 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 	            
 	           		break;
 	            
-	            case 13:
+	            case 13: // enter
 	            	
 	            	switch(opc){
 						case 1:
@@ -682,9 +682,9 @@ void mostrarFeedback(player* jugador1, player* jugador2){
 	printf("El jugador 1 se quedó con %d soldados\n\n", soldadosActivos(jugador1));
 	printf("=============================================\n");
 	printf("          ESTADÍSTICAS JUGADOR 2\n\n");
-	printf("El jugador 1 realizó %d disparos\n", jugador2->disparos);
-	printf("El jugador 1 eliminó a %d soldados enemigos\n", (MAX_SOLDIER - soldadosActivos(jugador1)));
-	printf("El jugador 1 se quedó con %d soldados\n\n", soldadosActivos(jugador2));
+	printf("El jugador 2 realizó %d disparos\n", jugador2->disparos);
+	printf("El jugador 2 eliminó a %d soldados enemigos\n", (MAX_SOLDIER - soldadosActivos(jugador1)));
+	printf("El jugador 2 se quedó con %d soldados\n\n", soldadosActivos(jugador2));
 	
 }
 
