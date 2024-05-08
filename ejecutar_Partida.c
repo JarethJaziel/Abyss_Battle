@@ -25,6 +25,7 @@ typedef struct {
 	pos canon;
 	pos soldier [MAX_SOLDIER];
 	pos aim[MAX_PTR];
+	int disparos;
 	
 } player;
 
@@ -264,13 +265,14 @@ void determinarPotencia(int* potencia, player* jugador, int c, char* key, char t
 	do{
 		imprimirTableroAux(tablero);
 
-		printf("\n\nSeleccione la potencia:\n\n\t");
+		printf("\n\nSeleccione la potencia:\n\n\t"); fflush(stdout);
 		if (*potencia == 1) {
             printf("< %d > ", *potencia);
         } else {
             printf("%d... < %d > ", *potencia - 1, *potencia);
         }
         if(*potencia != POTENCIA_MAX){
+        	fflush(stdout);
         	printf("...%d", *potencia + 1);
 		}
 		if(kbhit()){
@@ -325,19 +327,14 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	
 	for(i = posX; i > (posX - MAX_DAMAGE); i--){
 		posY = f(i, (float) c/MAX_PTR, jugador->canon.posX);
-		if(posY<1){
-			posY=1;	
-			break;		
-		} else if (posY>FILAS-2){
-			posY = FILAS-1;
-			break;
-		}
+		
+		
 		for(j = 0; j<MAX_SOLDIER; j++){
 			if((posY == enemigo->soldier[j].posY || posY - 1 == enemigo->soldier[j].posY || posY + 1 == enemigo->soldier[j].posY) && i == enemigo->soldier[j].posX ){
 				enemigo->soldier[j].active = 0;
 			}
 		}
-			
+
 	}
 	
 	// animaciÛn de disparo;
@@ -351,15 +348,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	if(jugador->canon.posX < COLUMNAS/2){
 		do {
 			posY = f(cont, (float) c/MAX_PTR, jugador->canon.posX);
-			if(posY<1){
-			//	posY=1;	
-				posX=cont;
-				break;		
-			} else if (posY>FILAS-2){
-			//	posY = FILAS-2;
-				posX=cont;
-				break;
-			}
+
 			tablero[posY][cont] = '*';
 			
 			imprimirTableroAux(tablero);
@@ -383,15 +372,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 		do {
 		
 			posY = f(cont, (float) c/MAX_PTR, jugador->canon.posX);
-			if(posY<1){
-			//	posY=1;	
-				posX=cont+MAX_DAMAGE;
-				break;		
-			} else if (posY>FILAS-2){
-			//	posY = FILAS-2;
-				posX=cont+MAX_DAMAGE;
-				break;
-			}
+
 			tablero[posY][cont] = '*';
 			
 			imprimirTableroAux(tablero);
@@ -442,9 +423,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 	}
 	
 	imprimirTableroAux(tablero);
-	printf("\n");
-	system("pause");
-	system("cls");
+
 	
 }
 
@@ -453,7 +432,7 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 
 
 void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], char* key, int* c, int* potencia, int* moment){
-	
+	int aux = soldadosActivos(enemigo);
 	if(kbhit()){
 		
 		*key = getch();
@@ -484,15 +463,31 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
 
             	disparar(jugador, enemigo, *c, *potencia, tablero);
 
-				if(jugador->canon.posX > COLUMNAS/2){
-					if(soldadosActivos(jugador) == 0 || soldadosActivos(enemigo) == 0){
+				
+				if(soldadosActivos(enemigo) >= aux || soldadosActivos(enemigo) == 0){
+					switchTurno(jugador, enemigo);
+					setAim(enemigo);
+					if(soldadosActivos(enemigo) == 0){
+						fflush(stdout);
+						printf("\n\n°Has eliminado a todos!     \n");
+					}
+					if(jugador->canon.posX > COLUMNAS/2 && (soldadosActivos(jugador) == 0 || soldadosActivos(enemigo) == 0)){
 						(*moment)++;
 					}
+					
+				} else {
+					
+					setAim(jugador);
+					printf("\n\n°Le has dado a un objetivo!\n°Vuelves a tirar!\n");
+					
 				}
-				switchTurno(jugador, enemigo);
+				jugador->disparos ++;
+				printf("\n");
+				system("pause");
+				system("cls");
             	*c = 0;
 
-            	setAim(enemigo);
+            	
             break;
             
 			
@@ -587,14 +582,34 @@ void updateFinal(player* jugador, char tablero[FILAS][COLUMNAS] ){
     
 }
 
+void mostrarFeedback(player* jugador1, player* jugador2){
+	
+	printf("\n\n=============================================\n");
+	printf("          ESTADÕSTICAS JUGADOR 1\n\n");
+	printf("El jugador 1 realizÛ %d disparos\n", jugador1->disparos);
+	printf("El jugador 1 eliminÛ a %d soldados enemigos\n", (MAX_SOLDIER - soldadosActivos(jugador2)));
+	printf("El jugador 1 se quedÛ con %d soldados\n\n", soldadosActivos(jugador1));
+	printf("=============================================\n");
+	printf("          ESTADÕSTICAS JUGADOR 2\n\n");
+	printf("El jugador 1 realizÛ %d disparos\n", jugador2->disparos);
+	printf("El jugador 1 eliminÛ a %d soldados enemigos\n", (MAX_SOLDIER - soldadosActivos(jugador1)));
+	printf("El jugador 1 se quedÛ con %d soldados\n\n", soldadosActivos(jugador2));
+	
+}
+
+
 
 int main() {
+	setlocale(LC_ALL,"");
+	
     char tablero[FILAS][COLUMNAS];
     char keyMain; int moment=1, c1=0,c2=0, potencia;
     player jugador[2];
     //Establece qu√© jugador comienza:
     jugador[0].turno=1;
     jugador[1].turno=0;
+    jugador[0].disparos=0;
+    jugador[1].disparos=0;
     	
     inicializarTablero(tablero);
     setCanon(jugador, tablero);
@@ -658,8 +673,8 @@ int main() {
 				}
     			
     			printf("\n\n================================\n\n");
-    			
-    			keyMain = 27;
+				
+				moment++;
 				break;
     			
 		}	
@@ -667,6 +682,12 @@ int main() {
     	// if keyMain = 27 => despliega el menu de pausa
 
         Sleep(10);
-    } while (keyMain != 27); // '27' es el c√≥digo ASCII para la tecla 'Escape'
+    } while (keyMain != 27 && moment<=4); // '27' es el c√≥digo ASCII para la tecla 'Escape'
+    
+    printf("Presione una tecla para ver el feedback del juego.");
+    getch();
+    mostrarFeedback(&jugador[0], &jugador[1]);
+    system("pause");
+    
     return 0;
 }
