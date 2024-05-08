@@ -488,9 +488,14 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 						case 1:
 							
 							*keyMain = 1; // Solo le cambio que no sea el escape en ASCII
+							printf("\nReanudando partida...");
+							Sleep(500);
 							system("cls");
 							break;
 						case 2:
+							printf("\nReiniciando partida...");
+							Sleep(500);
+							
 							*keyMain = 1;
 							*moment = 1;
 							*c1=0;
@@ -509,6 +514,8 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 							break;
 						case 3:
 						// HACER NADA
+							printf("\nVolviendo al menú...");
+							Sleep(500);
 							break;
 					}
 	            	
@@ -816,13 +823,16 @@ int main() {
                 switch (opcionSeleccionada) {
                     case 0:
                         printf("\nIniciando juego...\n");//jugar
+                        Sleep(500);
                         iniciarjuego();
                         break;
                     case 1:
-                        printf("\nMostrando creditos...\n");     //mostrar creditos                  
+                        printf("\nMostrando creditos...\n");     //mostrar creditos   
+						Sleep(500);               
    						system("cls");
                         printf("\t---ABBYSï¿½S BATTLE--- \n\t       \t Equipo C-FORCE \n \tAlonzo Palacios Rodrigo Alonzo \n \tCuevas Garcia Braulio Samuel \n \tMartincez Martincez pablo \n \tMoo Pan Jareth Jaziel\n");
-                        getch();
+                        printf("\nPresiona una tecla para volver al menú");
+						getch();
 						break;
                     case 2:
                         printf("\nSaliendo del programa...\n"); //saliendo
