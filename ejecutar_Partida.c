@@ -4,6 +4,7 @@
 #include <windows.h>
 #include <conio.h>
 #include <math.h>
+#include <string.h>
 
 #define FILAS 21
 #define COLUMNAS 91
@@ -245,7 +246,7 @@ void inputSet(player* jugador, char tablero[FILAS][COLUMNAS], char* key, int* c)
 		}
 
     }
-    printf("\nTe quedan %d soldados.\n",MAX_SOLDIER-(*c));
+    printf("\n\tTe quedan %d soldados.\n",MAX_SOLDIER-(*c));
     
 }
 
@@ -265,16 +266,17 @@ void determinarPotencia(int* potencia, player* jugador, int c, char* key, char t
 	do{
 		imprimirTableroAux(tablero);
 
-		printf("\n\nSeleccione la potencia:\n\n\t"); fflush(stdout);
+		printf("\nSeleccione la potencia:\n\n\t"); 
 		if (*potencia == 1) {
             printf("< %d > ", *potencia);
         } else {
             printf("%d... < %d > ", *potencia - 1, *potencia);
         }
-        if(*potencia != POTENCIA_MAX){
-        	fflush(stdout);
+        fflush(stdout);
+        if(*potencia != POTENCIA_MAX){        	
         	printf("...%d", *potencia + 1);
 		}
+		printf("\n\n\tPara seleccionar la potencia, use las flechas izquierda y derecha, o las teclas 'A' y 'D'");
 		if(kbhit()){
 			*key = getch();
 			switch(*key){
@@ -296,6 +298,7 @@ void determinarPotencia(int* potencia, player* jugador, int c, char* key, char t
 		}
 	} while (*key != 13 && *key != 27);
 	system("cls");
+
 }
 
 void verifVacio( char tablero[FILAS][COLUMNAS], int posY, int* posX, int direccion, float m, int origen){
@@ -429,7 +432,93 @@ void disparar(player* jugador, player* enemigo, int c, int potencia, char tabler
 
 
 
+void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador[], int* moment, int* c1, int* c2){
+	
+	char reanudar[] = "> Reanudar partida", reiniciar[] =  "Reiniciar partida", salir[] = "Salir del juego", opcion;
+	int opc = 1;
+	
+	system("cls");
+	
+	do{
+		imprimirTableroAux(tablero);
+		printf("\n\n=============================================\n");
+		printf("                   PAUSA\n\n");
+		printf("%s\n%s\n%s", reanudar, reiniciar, salir);
+		if(kbhit()){
+			opcion = getch();
+			switch(opcion){
+				case 72: case 119: case 87: // Flecha arriba, w y W
+			
+					if(opc>1 ){
+						opc--;
+					}
+					
+		      		break;
+	       		
+				case 80: case 115: case 83: // Flecha abajo, s y S
+	
+					
+					if(opc<3){
+						opc++;
+					}
+	            
+	           		break;
+	            
+	            case 13:
+	            	
+	            	switch(opc){
+						case 1:
+						//	strcpy(reanudar, "> Reanudar partida");
+							
+							*keyMain = 1; // Solo le cambio que no sea el escape en ASCII
+							system("cls");
+							break;
+						case 2:
+						//	strcpy(reiniciar, "> Reiniciar partida");
+							*keyMain = 1;
+							*moment = 1;
+							*c1=0;
+							*c2=0;
+							
+							jugador[0].turno=1;
+						    jugador[1].turno=0;
+						    jugador[0].disparos=0;
+						    jugador[1].disparos=0;
+						    	
+						    inicializarTablero(tablero);
+						    setCanon(jugador, tablero);
+						    setSoldier1(&jugador[0], tablero); setSoldier1(&jugador[1], tablero);
+							system("cls");
+							
+							break;
+						case 3:
+						//	strcpy(salir, "> Salir del juego");
+						// HACER NADA
+							break;
+					}
+	            	
+            	break;
+			}
+			strcpy(reanudar, "Reanudar partida");
+			strcpy(reiniciar, "Reiniciar partida");
+			strcpy(salir, "Salir del juego");
 
+			switch(opc){
+				case 1:
+					strcpy(reanudar, "> Reanudar partida");
+					break;
+				case 2:
+					strcpy(reiniciar, "> Reiniciar partida");
+					break;
+				case 3:
+					strcpy(salir, "> Salir del juego");
+					break;
+			}
+		}
+	} while (opcion!=13);
+	
+	
+}
 
 void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], char* key, int* c, int* potencia, int* moment){
 	int aux = soldadosActivos(enemigo);
@@ -460,7 +549,9 @@ void inputAim (player* jugador, player* enemigo, char tablero[FILAS][COLUMNAS], 
             case 13:
             	*potencia = ceil((float) POTENCIA_MAX/2);
             	determinarPotencia(potencia, jugador, *c, key, tablero);
-
+				if(*key == 27){
+					break;
+				}
             	disparar(jugador, enemigo, *c, *potencia, tablero);
 
 				
@@ -610,19 +701,20 @@ int main() {
     jugador[1].turno=0;
     jugador[0].disparos=0;
     jugador[1].disparos=0;
-    	
+    
     inicializarTablero(tablero);
     setCanon(jugador, tablero);
     setSoldier1(&jugador[0], tablero); setSoldier1(&jugador[1], tablero);
     
-    //printf("Cuantos jugadores")
-    
     do {
     	
-    	imprimirTablero(tablero, jugador);
+    	imprimirTableroAux(tablero);
     	switch(moment){
     		case 1:
     			//if turno jugador 1
+    			printf("\nJugador 1, coloca a tus soldados\n\n");
+    			printf("\tMueve el cursor con las flechas o con WASD\n");
+    			printf("\tPara seleccionar la posición, presiona enter\n");
     			inputSet(&jugador[0], tablero, &keyMain, &c1);
     			//if c1 = 4 cambiar turnos y aumentar momento
     			if (c1==MAX_SOLDIER){
@@ -633,6 +725,9 @@ int main() {
 				}
     			break;
     		case 2:
+    			printf("\nJugador 2, coloca a tus soldados\n\n");
+    			printf("\tMueve el cursor con las flechas o con WASD\n");
+    			printf("\tPara seleccionar la posición, presiona enter\n");
     			inputSet(&jugador[1], tablero, &keyMain, &c1);
     			if (c1==MAX_SOLDIER){
     				switchTurno(&jugador[0], &jugador[1]);
@@ -645,15 +740,18 @@ int main() {
     			break;
     		case 3:
     			
+    			printf("\nTurno del jugador %d\n", jugador[0].turno?1:2);
+    			printf("\n\tMueve la trayectoria del disparo con las flechas de arriba y abajo, o con 'W' o 'S'\n");
+    			
     			if(jugador[0].turno){
     				updateTablero(&jugador[0], &jugador[1], tablero);
     				inputAim(&jugador[0], &jugador[1], tablero,&keyMain, &c2, &potencia, &moment);
-    				printf("\nObjetivos restantes: %d\n\n", soldadosActivos(&jugador[1]));
+    				printf("\n\tObjetivos restantes: %d\n\n", soldadosActivos(&jugador[1]));
 
 				} else {
 					updateTablero(&jugador[1], &jugador[0], tablero);
 					inputAim(&jugador[1], &jugador[0], tablero, &keyMain, &c2, &potencia, &moment);
-					printf("\nObjetivos restantes: %d\n\n", soldadosActivos(&jugador[0]));
+					printf("\n\tObjetivos restantes: %d\n\n", soldadosActivos(&jugador[0]));
 
 				}
 				
@@ -679,15 +777,20 @@ int main() {
     			
 		}	
     	
-    	// if keyMain = 27 => despliega el menu de pausa
+    	if(keyMain == 27){
+    		desplegarPausa(&keyMain, tablero, jugador, &moment, &c1, &c2);
+		}
 
         Sleep(10);
     } while (keyMain != 27 && moment<=4); // '27' es el cÃ³digo ASCII para la tecla 'Escape'
     
-    printf("Presione una tecla para ver el feedback del juego.");
-    getch();
-    mostrarFeedback(&jugador[0], &jugador[1]);
-    system("pause");
+    if(keyMain!=27){
+    	printf("Presione una tecla para ver el feedback del juego.");
+	    getch();
+	    mostrarFeedback(&jugador[0], &jugador[1]);
+	    system("pause");
+	}
+    
     
     return 0;
 }
