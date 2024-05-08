@@ -42,7 +42,7 @@ void gotoxy(int x, int y) {
 
 void imprimirMenu(int opcionSeleccionada) {
     system("cls");
-    printf("			ABYSSï¿½S BATTLE:\n\n");
+    printf("			ABYSS´S BATTLE:\n\n");
     printf("		      %s Iniciar juego\n", opcionSeleccionada == 0 ? ">  " : " ");
     printf("			 %s Creditos\n", opcionSeleccionada == 1 ? ">  " : " ");
     printf("		    %s Salir del programa\n", opcionSeleccionada == 2 ? ">  " :  " ");
@@ -459,7 +459,9 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 		imprimirTableroAux(tablero);
 		printf("\n\n=============================================\n");
 		printf("                   PAUSA\n\n");
-		printf("%s\n%s\n%s", reanudar, reiniciar, salir);
+		printf("           %sReanudar partida\n",opc==1?"> " : " ");
+		printf("           %sReiniciar partida\n",opc==2?"> " : " ");
+		printf("           %sRegresar al Menú\n",opc==3?"> " : " ");
 		if(kbhit()){
 			opcion = getch();
 			switch(opcion){
@@ -484,13 +486,11 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 	            	
 	            	switch(opc){
 						case 1:
-						//	strcpy(reanudar, "> Reanudar partida");
 							
 							*keyMain = 1; // Solo le cambio que no sea el escape en ASCII
 							system("cls");
 							break;
 						case 2:
-						//	strcpy(reiniciar, "> Reiniciar partida");
 							*keyMain = 1;
 							*moment = 1;
 							*c1=0;
@@ -508,27 +508,11 @@ void desplegarPausa(char* keyMain, char tablero[FILAS][COLUMNAS], player jugador
 							
 							break;
 						case 3:
-						//	strcpy(salir, "> Salir del juego");
 						// HACER NADA
 							break;
 					}
 	            	
             	break;
-			}
-			strcpy(reanudar, "Reanudar partida");
-			strcpy(reiniciar, "Reiniciar partida");
-			strcpy(salir, "Salir del juego");
-
-			switch(opc){
-				case 1:
-					strcpy(reanudar, "> Reanudar partida");
-					break;
-				case 2:
-					strcpy(reiniciar, "> Reiniciar partida");
-					break;
-				case 3:
-					strcpy(salir, "> Salir del juego");
-					break;
 			}
 		}
 	} while (opcion!=13);
@@ -837,7 +821,7 @@ int main() {
                     case 1:
                         printf("\nMostrando creditos...\n");     //mostrar creditos                  
    						system("cls");
-                        printf("\t---ABBYSï¿½S BATTLE--- \n\t       \tCFORCE \n \tAlonzo Palacios Rodrigo Alonzo \n \tCuevas Garcia Braulio Samuel \n \tMartincez Martincez pablo \n \tMoo Pan Jareth Jaziel\n");
+                        printf("\t---ABBYSï¿½S BATTLE--- \n\t       \t Equipo C-FORCE \n \tAlonzo Palacios Rodrigo Alonzo \n \tCuevas Garcia Braulio Samuel \n \tMartincez Martincez pablo \n \tMoo Pan Jareth Jaziel\n");
                         getch();
 						break;
                     case 2:
