@@ -1,4 +1,4 @@
-> # PRIMERA ENTREGA
+> # TERCERA ENTREGA
 
 >![UADY logo](https://github.com/hjanssena/FIS-Proyecto/blob/JPabloMartinez/Assets/Logo_UADY.png?raw=true)
 
@@ -6,43 +6,71 @@
 ### FMAT UADY
 #### Grupo D - EMILIO GABRIEL REJÓN HERRERA
 
-## Miembros del equipo
+## Miembros del equipo --- C FORCE
  - Alonzo Palacios Rodrigo
  - Cuevas García Braulio Samuel
  - Moo Pan Jareth Jaziel
  - Martínez Martínez José Pablo
 
-### [Lista de cotejo](Assets\ListaDeCotejo.pdf)
+### [Lista de cotejo]()
 
-- [¡Enlace al archivo Word del proyecto!]()
+- [¡DOCUEMNTO DE LA PROPUESTA FINAL DE C FORCE!]()
 
-## TEAM
-
-### SCRUM master
- - 
- 
-### Development team
- - 
-
-## Nuestro Proyecto
+## "Abyss Battle"
 
 <img src="Assets\Logo_Prov.jpg" width="500" height="500" border="50"/>
 
 ---
+---
 ## Resumenes
 
 ### Antecedentes
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+¿Qué pasa cuando un grupo de amigos esta aburrido? si no cuentan con conexión a internet o con un juego de mesa físico, entonces tienen un problema. Buscando solucionar lo planteado anteriormente, se penso en crear un videojuego que funcionará sin estar conectado a internet, que sea para dos jugadores, con la particuliaridad de que sea elaborado en el lenguaje C, el cuál no es orientado a objetos. 
 
 ### Descripción del software
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+El producto de software lleva por nombre “Abyss Battle” elaborado en lenguaje C. Será 
+un videojuego para dos jugadores, de formato local y para ordenadores de sobre mesa y portátiles
+de bajos recursos, considerando cómo bajo recursos a aquellos ordenadores con a lo menos 4GB
+de memoria RAM, que cuenten con sistema operativo “Windows”. El proyecto estará 
+ambientado en la época medieval en sus personajes, escenarios y mecánicas, además carecerá de 
+una historia y tendrá como principal objetivo desarrollar e implementar una mecánica de 
+lanzamiento de proyectiles.
+
+En “Abyss Battle” al iniciar una partida los usuarios eligen donde colocar a sus soldados, 
+permitiendo que los jugadores puedan ver donde coloco a sus soldados el contrincante. Para 
+eliminar tropas del contrincante se usará un cañón que tendrá una mecánica de tipo lanzamiento 
+cargado, esta consiste en que el jugador podrá dirigir y cargar un proyectil, en la pantalla se 
+mostrará solo una parte de la trayectoria que seguirá el proyectil, teniendo como meta principal
+impactar dicho proyectil sobre una de las tropas enemigas. Obtiene la victoria aquel jugador que 
+acabe con todos los soldados del contrincante.
+
 
 ### Usuarios Objetivo
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Nuestros usuarios objetivos son aquellas personas familiarizadas con el uso de ordenadores de sobre mesa o portatiles, además al ser un videojuego con nula violencia realista, el rango de edad nuestros usuarios objetivos lo podemos ubicar entre los 8 - 40 años. Cómo usuarios secundarios serían todos aquellos que no cumplan con la descripción previamente mencionada, ya que al ser un juego de mesa digital, no deja de ser casual y por lo mismo se presta a ser jugado por personas de casi todas las edades.
+
+### Descripción del usuario principal
+- Descripción: El jugador es la persona que interactúa directamente con el software, 
+ya sea controlando el cañón y lanzando proyectiles durante las partidas o configurando 
+opciones dentro del juego.
+- Responsabilidades:
+1. Jugar partidas contra otro jugador.
+2. Configurar opciones del juego, como ajustes de audio.
+- Características:
+1. Tiene habilidades y conocimientos básicos para jugar videojuegos.
+2. Puede variar en experiencia desde principiantes hasta jugadores más
+experimentados.
+- Objetivos:
+1. Disfrutar de la experiencia de juego.
+2. Ganar partidas contra otros jugadores.
+3. Explorar y descubrir las diferentes mecánicas y estrategias del juego.
 
 ### Innovación
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+1. Será elaborado en un lenguaje de programación de bajo nivel conocido como C.
+2. Se implementará una mecánica de lanzamiento de proyectiles para diferenciarlo de un juego de batalla naval convencional.
+3. Se implementará un mecánica de calculo de trayectoria para los proyectiles, así como una para calcular la potencia con la que el jugador en turno decida lanzarlo.
+4. Se implementará un algortimo que permita detecta la colisión o la no colisión entre el proyectil y las tropas enemigas.
+5. Se podrá ejecutar en consola desde el programa conocido como dev C++.
 
 
 
@@ -53,30 +81,48 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 ---
 ## Objetivo general y objetivos secundarios
 
-- [HERE!]()
+### Objetivo general
+Desarrollar videojuego en formato 2D, que simule un combate estratégico por turnos entre dos 
+jugadores, implementando una mecánica de lanzamiento y precisión con un cañón para su 
+ejecución en consola de sistema “Windows”.
 
-## Requerimientos
-- [HERE!]()
+### Objetivos específicos del sistema
+1. Programar una mecánica que permita otorgar una potencia de lanzamiento, direccionar y 
+calcular la trayectoria de un proyectil cuando es disparado.
+2. Optimizar el software para garantizar un rendimiento fluido en computadoras de 
+escritorio y portátiles que cuenten con sistema operativo “Windows”.
+3. Implementar un sistema de juego basado en turnos, que además permita detectar cuando 
+ocurre un cambio de turno.
+4. Crear interfaces minimalistas e intuitivas para el sistema, que permitan que los usuarios 
+se adapten y aprendan a utilizar las mecánicas del videojuego. 
+5. Codificar un algoritmo para detectar las colisiones entre un proyectil y otros elementos 
+del software.
+6. Incorporar en el software gráficos en 2D, animaciones, efectos de sonido y un 
+“soundtrack” de uso libre
 
-## Casos de Uso
-
+## Requerimientos (Matriz de requerimientos)
 - [HERE!]()
 
 ## Diagrama de casos de uso - Tipos de usuario
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
-### Más información:
 - [HERE!]()
 
+## Casos de uso - Tipos de usuario
+- [HERE!]()
+  
+## Diagrama de bloques (funcionalidad del sistema)
+- [HERE!]()
+
+
 ## Interfaces de Usuario
+- [HERE!]()
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+## Cartel cientifico
+- [HERE!]()
 
-### Más información:
-- [HERE!](Design)
+## Versiones previas del código del software "Abyss Battle"
+- [HERE!]()
 
----
+
 
 ### PROCESO DE DESARROLLO
 

@@ -1,3 +1,7 @@
 # PRODUCT - PRODUCTO
 
-Aui encontrará el enlace al archivo PDF con toda la información relevante sobre el planteamiento de este software.
+En esta carpeta encontrará el archivo PDF hacia el documento final de la propuesta llamada:
+**Videojuego De Batallas Entre Dos Jugadores Que 
+Utiliza Mecánicas De Lanzamiento De Proyectiles Para Obtener la Victoria (“Abbys Battle”)**
+
+ Elaborada por el equipo C-Force

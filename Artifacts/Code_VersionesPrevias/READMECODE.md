@@ -1,0 +1,1 @@
+Versiones anteriores del código de ""Abyss Battle" que sirven a modo de control de cambios de la versión final almacenada en la rama Code. Si desea observar la verisón finalizada del software por favor dirigirse a la rama "Code" de este repositorio.
