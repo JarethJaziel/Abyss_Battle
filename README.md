@@ -12,9 +12,9 @@
  - Moo Pan Jareth Jaziel
  - Martínez Martínez José Pablo
 
-### [Lista de cotejo]()
+### [Lista de cotejo](https://github.com/JarethJaziel/Abyss_Battle/blob/09e4330ec36272c44d73a81d960321c0b55c5b6e/Assets/ListaDeCotejo_EntregaFinal.pdf)
 
-- [¡DOCUEMNTO DE LA PROPUESTA FINAL DE C FORCE!]()
+- [¡DOCUMENTO DE LA PROPUESTA FINAL DE C FORCE!](https://github.com/JarethJaziel/Abyss_Battle/blob/09e4330ec36272c44d73a81d960321c0b55c5b6e/Product%5BAboutOurGame%5D/Propuesta_CForceF.pdf)
 
 ## "Abyss Battle"
 
@@ -101,26 +101,26 @@ del software.
 “soundtrack” de uso libre
 
 ## Requerimientos (Matriz de requerimientos)
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/blob/09e4330ec36272c44d73a81d960321c0b55c5b6e/Artifacts/Matriz%20de%20requerimientos%20V2.pdf)
 
 ## Diagrama de casos de uso - Tipos de usuario
 - [HERE!]()
 
 ## Casos de uso - Tipos de usuario
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/blob/09e4330ec36272c44d73a81d960321c0b55c5b6e/Artifacts/Use%20Case%20Diagram%20for%20Abyss%20Battle%20V2.1.png)
   
 ## Diagrama de bloques (funcionalidad del sistema)
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/blob/09e4330ec36272c44d73a81d960321c0b55c5b6e/Artifacts/Abyss%20Battle%20%5BDiagrama%20de%20bloques%5D%20V1.jpg)
 
 
 ## Interfaces de Usuario
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/tree/09e4330ec36272c44d73a81d960321c0b55c5b6e/Design)
 
 ## Cartel cientifico
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/blob/09e4330ec36272c44d73a81d960321c0b55c5b6e/Artifacts/Cartel%20Cientifico%20-%20Abyss%20Battle.pdf)
 
 ## Versiones previas del código del software "Abyss Battle"
-- [HERE!]()
+- [HERE!](https://github.com/JarethJaziel/Abyss_Battle/tree/09e4330ec36272c44d73a81d960321c0b55c5b6e/Artifacts/Code_VersionesPrevias)
 
 
 
